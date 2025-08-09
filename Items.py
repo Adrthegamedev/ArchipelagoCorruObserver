@@ -1,0 +1,445 @@
+from BaseClasses import Item, ItemClassification
+import typing
+
+
+class ItemData(typing.NamedTuple):
+    code: typing.Optional[int]
+    classification: any
+    count: int = 1
+
+
+class CorruObserverItem(Item):
+    game: str = "CorruObserver"
+
+
+item_table = {
+    # EP0
+    "Menu: Examined Dendritic Cyst": ItemData(54140000, ItemClassification.filler),
+    "Menu: Examined Fractalline Cyst": ItemData(54140001, ItemClassification.filler),
+    "Menu: Examined Cyst": ItemData(54140002, ItemClassification.progression),
+    "Menu: Touched Cyst": ItemData(54140003, ItemClassification.progression),
+    "Menu: Depth Scanned Cyst": ItemData(54140004, ItemClassification.progression),
+    "Menu: Completed Intro": ItemData(54140005, ItemClassification.progression),
+    "Visited: /hello/": ItemData(54140006, ItemClassification.filler),
+    "Hello: Sentry called you idiot": ItemData(54140007, ItemClassification.progression),
+    "Visited: /hub/": ItemData(54140008, ItemClassification.filler),
+    "Hub: Funfriend introduced": ItemData(54140009, ItemClassification.filler),
+    "Visited: /local/city/": ItemData(54140010, ItemClassification.filler),
+    "Visited: /local/city/street/": ItemData(54140011, ItemClassification.filler),
+    "City Streets: Tried Room High Up chat": ItemData(54140012, ItemClassification.filler),
+    "City Streets: Cashier hello": ItemData(54140013, ItemClassification.progression),
+    "City Streets: Orange Coffee": ItemData(54140014, ItemClassification.progression),
+    "City Streets: Got Drinks": ItemData(54140015, ItemClassification.filler),
+    "Visited: /local/orbit/": ItemData(54140016, ItemClassification.progression),
+    "Visited: /local/dullvessel/": ItemData(54140017, ItemClassification.filler),
+    "Visited: /local/ocean/": ItemData(54140018, ItemClassification.progression),
+    "Visited: /local/ocean/ship/": ItemData(54140019, ItemClassification.filler),
+    "Visited: /local/ocean/ship/interview/": ItemData(54140020, ItemClassification.filler),
+    "First Chat: Be Honest": ItemData(54140021, ItemClassification.progression),
+    #"dullvessel_dive": ItemData(54140022, ItemClassification.progression),
+    "Visited: /local/depths/": ItemData(54140023, ItemClassification.filler),
+    "Depths: Ejected from cyst": ItemData(54140024, ItemClassification.filler),
+    "Progressive EP0 Epilogue": ItemData(54140025, ItemClassification.progression, 3),
+    "Visited: /local/uncosm/": ItemData(54140026, ItemClassification.filler),
+    "Visited: /local/uncosm/no/": ItemData(54140027, ItemClassification.filler),
+    # EP1
+    "Menu: EP1 Shown Materials": ItemData(54140028, ItemClassification.progression), # choice agnostic; client linked to Progressive EP0 Epilogue for the item showing
+    "Menu: EP1 Fed": ItemData(54140029, ItemClassification.progression), # choice agnostic
+    "Hub: Funfriend EP1 Fed dialogue": ItemData(54140030, ItemClassification.progression),
+    "Visited: /local/ocean/embassy/": ItemData(54140031, ItemClassification.progression),
+    "The Embassy: Completed Discovery": ItemData(54140032, ItemClassification.progression),
+    "The Embassy: Completed Suspicion": ItemData(54140033, ItemClassification.progression),
+    "City Streets: EP1 End Velzie Encounter": ItemData(54140034, ItemClassification.progression),
+    "Visited: /local/ocean/ship/elsewhere/": ItemData(54140035, ItemClassification.filler),
+    "Clemens Romanus: Seen Hole": ItemData(54140036, ItemClassification.filler),
+    "Seen Proxyfriend": ItemData(54140037, ItemClassification.filler),
+    "Visited: /local/cache/": ItemData(54140038, ItemClassification.filler),
+    "Hub: Funfriend God Dialogue": ItemData(54140039, ItemClassification.progression),
+    "Visited: /local/uncosm/recosm/": ItemData(54140040, ItemClassification.filler),
+    "Recosm: Greeted God": ItemData(54140041, ItemClassification.filler),
+    "Recosm: Began God proxy fight": ItemData(54140042, ItemClassification.filler),
+    #"recosm_finalseen": ItemData(54140043, ItemClassification.filler),
+    "Recosm: God End State": ItemData(54140044, ItemClassification.progression), # sparing ONLY (sorry to disappointed people)
+    # EP2
+    "Menu: EP2 Intro": ItemData(54140045, ItemClassification.progression),
+    "The Embassy: Framing Device Introduction": ItemData(54140046, ItemClassification.progression),
+    "Hub: Framing Device Installation": ItemData(54140047, ItemClassification.progression),
+    "The Embassy: Collapse Kazki Storage Display": ItemData(54140048, ItemClassification.filler),
+    "The Embassy: Gakvu coat pause state": ItemData(54140049, ItemClassification.filler),
+    "The Embassy: Movefriend Fight Dialogue Begin": ItemData(54140050, ItemClassification.filler),
+    "The Embassy: Movefriend Fight Dialogue End": ItemData(54140051, ItemClassification.progression),
+    # EP3
+    "Menu: EP3 Intro": ItemData(54140052, ItemClassification.progression),
+    "Visited: /local/ocean/embassy/golem/": ItemData(54140053, ItemClassification.filler),
+    "Golem Maintenance: Dog Examine": ItemData(54140054, ItemClassification.filler),
+    "Golem Maintenance: Metatrauma": ItemData(54140055, ItemClassification.filler),
+    "Golem Maintenance: Foundation Golem start": ItemData(54140056, ItemClassification.filler),
+    "Golem Maintenance: Foundation Golem end": ItemData(54140057, ItemClassification.progression),
+    # EP3ADD1 (sequestered off even though accessible by ep2)
+    "Visited: /local/beneath/": ItemData(54140058, ItemClassification.filler),
+    "Beneath intro dialogue": ItemData(54140059, ItemClassification.filler),
+    "Dull Vessel: Akizet's Room": ItemData(54140060, ItemClassification.filler),
+    "Dull Vessel: Destroyed Dull Vessel": ItemData(54140061, ItemClassification.filler),
+    "Beneath: abyss.png": ItemData(54140062, ItemClassification.filler),
+    "Beneath: EFFIGY.png": ItemData(54140063, ItemClassification.filler),
+    "Beneath: nothanks.png": ItemData(54140064, ItemClassification.filler),
+    "Beneath: Drowning calmed": ItemData(54140065, ItemClassification.filler), # alas filler
+    "Visited: /local/beneath/parasite/": ItemData(54140066, ItemClassification.filler),
+    "Parasite Plane: Call Team pieces": ItemData(54140067, ItemClassification.filler),
+    "Parasite Plane: Tactical Board examine": ItemData(54140068, ItemClassification.filler),
+    "Visited: /local/beneath/depths/": ItemData(54140069, ItemClassification.filler),
+    "First Chat (Incoherent): Dying to Ghost": ItemData(54140070, ItemClassification.filler),
+    "First Chat (Incoherent): Seen Ghost": ItemData(54140071, ItemClassification.filler),
+    "First Chat (Incoherent): Interview Lady Unitied": ItemData(54140072, ItemClassification.progression), # Interviewer unitied
+    "Beneath Depths: Velzie Encounter": ItemData(54140073, ItemClassification.filler), # it's not on beneath_depths because that only gets set if you unity it
+    "Visited: /local/ozo/": ItemData(54140074, ItemClassification.filler),
+    "Jokzi Ozo: Unity Mask": ItemData(54140075, ItemClassification.progression), # Unity mask
+    "Jokzi Ozo: Hunger Mask": ItemData(54140076, ItemClassification.progression), # Hunger mask
+    "The Void: Fairy Unitied": ItemData(54140077, ItemClassification.progression), # Fairy unitied
+    "City Streets: Isabel Unitied": ItemData(54140078, ItemClassification.progression), # Isabel unitied
+    "City Streets: Fawners Effigies Unitied": ItemData(54140079, ItemClassification.progression), # Fawner effigies unitied
+    "Beneath: Dancer Effigy Unitied": ItemData(54140080, ItemClassification.progression), # Dancer effigy unitied
+    "Parasite Plane: Gamer Effigy Unitied": ItemData(54140081, ItemClassification.progression), # Gamer effigy unitied
+    "Memory Hole: Effigy: Sipper Effigy Unitied": ItemData(54140082, ItemClassification.progression), # Sipper effigy unitied
+    "Progressive Memory Hole Cavik": ItemData(54140083, ItemClassification.progression, 2), # Secavik state (seen, unitied)
+    "Hub: Funfriend Ozo notification": ItemData(54140084, ItemClassification.progression),
+    "Hub: Funfriend Ozo Gate dialogue": ItemData(54140085, ItemClassification.progression),
+    "Jokzi Ozo: Enter dark room": ItemData(54140086, ItemClassification.filler),
+    "Jokzi Ozo: Council Dance": ItemData(54140087, ItemClassification.filler),
+    "Effigy seen": ItemData(54140088, ItemClassification.filler),
+    # EP3ADD2
+    "Visited: /local/beneath/embassy/": ItemData(54140089, ItemClassification.filler),
+    "::/FRAME/: Seen Daemon": ItemData(54140090, ItemClassification.filler),
+    #"bosswarn": ItemData(54140091, ItemClassification.filler), messes with ::/FRAME/ too much
+    "::/FRAME/: Seen Daemon Mimic": ItemData(54140092, ItemClassification.filler),
+    "::/FRAME/: Seen Rule-2-breaking Daemon": ItemData(54140093, ItemClassification.filler),
+    "::/FRAME/: Examined Interloper": ItemData(54140094, ItemClassification.filler),
+    #"progressive e3a2escape": ItemData(54140095, ItemClassification.progression, 2), # too janky for logic
+    "::/FRAME/: Won Escape": ItemData(54140096, ItemClassification.progression), # Geli unitied; also set e3a2__geliintro and ozo__ozogeli
+    "::/FRAME/: ???": ItemData(54140097, ItemClassification.filler),
+    # ODEN
+    "Golem Maintenance: Dog Unity": ItemData(54140098, ItemClassification.progression),
+    "Jokzi Ozo: Event: Council - geli": ItemData(54140099, ItemClassification.filler), # Council Geli event
+    "Jokzi Ozo: Event: Council - isabel": ItemData(54140100, ItemClassification.filler), # Council Isabel event
+    "Jokzi Ozo: Event: Council - fairy": ItemData(54140101, ItemClassification.filler), # Council Fairy event
+    "Jokzi Ozo: Event: Council - stow": ItemData(54140102, ItemClassification.filler), # Council Stowaway event
+    "Jokzi Ozo: Event: Council - effigies": ItemData(54140103, ItemClassification.filler), # Council Effigies event
+    "Jokzi Ozo: Event: Fairy - geli": ItemData(54140104, ItemClassification.filler), # Fairy Geli event
+    "Jokzi Ozo: Event: Fairy - stow": ItemData(54140105, ItemClassification.filler), # Fairy Stowaway event
+    "Jokzi Ozo: Event: Fairy - effigies": ItemData(54140106, ItemClassification.filler), # Fairy Effigies event
+    "Jokzi Ozo: Event: Isabel - gelistow": ItemData(54140107, ItemClassification.filler), # Isabel Geli Stowaway event
+    "Jokzi Ozo: Event: Isabel - stow": ItemData(54140108, ItemClassification.filler), # Isabel Stowaway event
+    "Jokzi Ozo: Event: Isabel - geli": ItemData(54140109, ItemClassification.filler), # Isabel Geli event
+    "Jokzi Ozo: Event: Isabel - fairy": ItemData(54140110, ItemClassification.filler), # Isabel Fairy event
+    "Jokzi Ozo: Event: Dark room - effigy1": ItemData(54140111, ItemClassification.filler), # Dark Effigy1 event
+    "Jokzi Ozo: Event: Dark room - effigy2": ItemData(54140112, ItemClassification.filler), # Dark Effigy2 event
+    "Jokzi Ozo: Event: Dark room - stow": ItemData(54140113, ItemClassification.filler), # Dark Stowaway event
+    "Seen Velzie buddy": ItemData(54140114, ItemClassification.filler),
+    # EP4
+    "Menu: EP4 Intro": ItemData(54140115, ItemClassification.progression),
+    "Visited: /local/ocean/embassy/groundsmindry/": ItemData(54140116, ItemClassification.filler),
+    "Pale Halls: Leverage obtained": ItemData(54140117, ItemClassification.progression),
+    # MEMORY HOLE
+    "Visited: /local/uncosm/where/": ItemData(54140900, ItemClassification.filler),
+    "Visited: /local/uncosm/cavik/": ItemData(54140901, ItemClassification.filler),
+    "Visited: /local/uncosm/clemens%20romanus/": ItemData(54140902, ItemClassification.filler),
+    "Visited: /local/uncosm/corru/": ItemData(54140903, ItemClassification.filler),
+    "Visited: /local/uncosm/dog/": ItemData(54140904, ItemClassification.filler),
+    "Visited: /local/uncosm/dull/": ItemData(54140905, ItemClassification.filler),
+    "Visited: /local/uncosm/effigy/": ItemData(54140906, ItemClassification.filler),
+    "Visited: /local/uncosm/flower/": ItemData(54140907, ItemClassification.filler),
+    "Visited: /local/uncosm/humor/": ItemData(54140908, ItemClassification.filler),
+    "Visited: /local/uncosm/larval/": ItemData(54140909, ItemClassification.filler),
+    "Visited: /local/uncosm/parasite/": ItemData(54140910, ItemClassification.filler),
+    "Visited: /local/uncosm/sorry/": ItemData(54140911, ItemClassification.filler),
+    "Visited: /local/uncosm/spire/": ItemData(54140912, ItemClassification.filler),
+    "Visited: /local/uncosm/surface": ItemData(54140913, ItemClassification.filler),
+    "Visited: /local/uncosm/veilk/": ItemData(54140914, ItemClassification.filler),
+    "Visited: /local/uncosm/yuzku/": ItemData(54140915, ItemClassification.filler),
+    "Visited: /local/uncosm/zuzucri/": ItemData(54140916, ItemClassification.filler),
+    "Visited: /local/uncosm/zuzucri-masks/": ItemData(54140917, ItemClassification.filler),
+}
+scansanity_item_table = {
+    "Examined: ..__LOCALHOST__..: funfriend": ItemData(54150000, ItemClassification.filler),
+    "Examined: ..__THEIR_CITY__..: glimmering spires mark their cities": ItemData(54150001, ItemClassification.filler),
+    "Examined: ..__THEIR_CITY__..: these grand icons of their control": ItemData(54150002, ItemClassification.filler),
+    "Examined: ..__THEIR_CITY__..: they watch": ItemData(54150003, ItemClassification.filler),
+    "Examined: ..__THE_VOID__..: our dull vessel": ItemData(54150004, ItemClassification.filler),
+    "Examined: ..__THE_VOID__..: gate::the dull contrivance": ItemData(54150005, ItemClassification.filler),
+    "Examined: ..__CITY_SURFACE__..: cashier": ItemData(54150006, ItemClassification.filler),
+    "Examined: ..__CITY_SURFACE__..: envoy": ItemData(54150007, ItemClassification.filler),
+    "Examined: ..__CITY_SURFACE__..: menu": ItemData(54150008, ItemClassification.filler),
+    "Examined: ..__CITY_SURFACE__..: slim streetwalker": ItemData(54150009, ItemClassification.filler),
+    "Examined: ..__CITY_SURFACE__..: cloaked streetwalker": ItemData(54150010, ItemClassification.filler),
+    "Examined: ..__CITY_SURFACE__..: stre wal k": ItemData(54150011, ItemClassification.filler),
+    "Examined: ..__CITY_SURFACE__..: the room high up": ItemData(54150012, ItemClassification.filler),
+    "Examined: ..__CITY_SURFACE__..: electric face box": ItemData(54150013, ItemClassification.filler),
+    "Examined: ..__CITY_SURFACE__..: beautiful parasite": ItemData(54150014, ItemClassification.filler),
+    "Examined: ..__THEIR_WATERS__..: gate::the depths": ItemData(54150015, ItemClassification.filler),
+    "Examined: ..__THEIR_WATERS__..: their vessel": ItemData(54150016, ItemClassification.filler),
+    "Examined: ..__THEIR_WATERS__..: stilted shore": ItemData(54150017, ItemClassification.filler),
+    "Examined: ..__THEIR_WATERS__..: the embassy": ItemData(54150018, ItemClassification.filler),
+    "Examined: ..__THEIR_VESSEL__..: the funny little room": ItemData(54150019, ItemClassification.filler),
+    "Examined: ..__THEIR_VESSEL__..: clemens romanus": ItemData(54150020, ItemClassification.filler),
+    "Examined: ..__OUR_DULL_VESSEL__..: pilot cyst": ItemData(54150021, ItemClassification.filler),
+    "Examined: ..__OUR_DULL_VESSEL__..: glazika": ItemData(54150022, ItemClassification.filler),
+    "Examined: ..__OUR_DULL_VESSEL__..: container": ItemData(54150023, ItemClassification.progression),
+    "Examined: ..__OUR_DULL_VESSEL__..: parasite plane": ItemData(54150024, ItemClassification.filler),
+    "Examined: ..__OUR_DULL_VESSEL__..: climbing wall": ItemData(54150025, ItemClassification.filler),
+    "Examined: ..__OUR_DULL_VESSEL__..: dull heart": ItemData(54150026, ItemClassification.filler),
+    "Examined: ..__OUR_DULL_VESSEL__..: workspace": ItemData(54150027, ItemClassification.filler),
+    "Examined: ..__OUR_DULL_VESSEL__..: translation slab": ItemData(54150028, ItemClassification.filler),
+    "Examined: ..__OUR_DULL_VESSEL__..: column": ItemData(54150029, ItemClassification.filler),
+    "Examined: ..__OUR_DULL_VESSEL__..: bright ground-parasite": ItemData(54150030, ItemClassification.filler),
+    "Examined: ..__OUR_DULL_VESSEL__..: advanced rejuvenation chamber": ItemData(54150031, ItemClassification.filler),
+    "Examined: ..__OUR_DULL_VESSEL__..: high-pressure body": ItemData(54150032, ItemClassification.filler),
+    "Examined: ..__OUR_DULL_VESSEL__..: personal storage": ItemData(54150033, ItemClassification.filler),
+    "Examined: ..__OUR_DULL_VESSEL__..: equipment storage": ItemData(54150034, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: akizetesche": ItemData(54150035, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: cavik": ItemData(54150036, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: bozko": ItemData(54150037, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: kazki": ItemData(54150038, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: tozik": ItemData(54150039, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: gakvu": ItemData(54150040, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: miltza": ItemData(54150041, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: movefriend": ItemData(54150042, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: mindcores": ItemData(54150043, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: container": ItemData(54150044, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: qou body": ItemData(54150045, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: summarizer": ItemData(54150046, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: hostile container": ItemData(54150047, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: hostile veilklight": ItemData(54150048, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: recollection::discovery": ItemData(54150049, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: recollection::suspicion": ItemData(54150050, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: recollection::collapse": ItemData(54150051, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: attendant": ItemData(54150052, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: mystery cyst": ItemData(54150053, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: my seat": ItemData(54150054, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: barfriend": ItemData(54150055, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: orange simulacrum": ItemData(54150056, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: veilklight": ItemData(54150057, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: rejuvenation chamber": ItemData(54150058, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: kalstik stand": ItemData(54150059, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: face stand": ItemData(54150060, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: cyst cluster": ItemData(54150061, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: cyst pile": ItemData(54150062, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: clothing storage": ItemData(54150063, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: listener": ItemData(54150064, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: timestopper": ItemData(54150065, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: window": ItemData(54150066, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: simulacra dispensary": ItemData(54150067, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: tir qou": ItemData(54150068, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: jut qou": ItemData(54150069, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: kiv qou": ItemData(54150070, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: vel qou": ItemData(54150071, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: simulacra": ItemData(54150072, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: storage display": ItemData(54150073, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: bright weapons": ItemData(54150074, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: manipulation slab": ItemData(54150075, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: unkind eye": ItemData(54150076, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: sculptor": ItemData(54150077, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: veilk models": ItemData(54150078, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: damaged golem": ItemData(54150079, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: tendrils": ItemData(54150080, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: movefoe": ItemData(54150081, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: bstrd door": ItemData(54150082, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: unnerving cyst": ItemData(54150083, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: peculiar obelisk": ItemData(54150084, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: archive": ItemData(54150085, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: archival golem": ItemData(54150086, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: jutskin": ItemData(54150087, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: bstrdlight": ItemData(54150088, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: pain shelf": ItemData(54150089, ItemClassification.filler),
+    "Examined: ..__THE_EMBASSY__..: bstrd golem": ItemData(54150090, ItemClassification.filler),
+    "Examined: ..__CACHE__..: the storm": ItemData(54150091, ItemClassification.filler),
+    "Examined: ..__CACHE__..: polygonation spire": ItemData(54150092, ItemClassification.filler),
+    "Examined: ..__CACHE__..: ÉœÙ]ïå¥¹": ItemData(54150093, ItemClassification.filler),
+    "Examined: ..__CACHE__..: ? ???? ?? ?? ??": ItemData(54150094, ItemClassification.filler),
+    "Examined: ..__CACHE__..: Ò½º": ItemData(54150095, ItemClassification.filler),
+    "Examined: »é»¯uÂ%S¥(»: memoryhole": ItemData(54150096, ItemClassification.filler),
+    "Examined: a?-?b?-????-y?s?: s w   al kk": ItemData(54150097, ItemClassification.filler),
+    "Examined: a?-?b?-????-y?s?: Ƙø¿ƶḳ¿±": ItemData(54150098, ItemClassification.filler),
+    "Examined: a?-?b?-????-y?s?: ×è.÷ùÏÏøø": ItemData(54150099, ItemClassification.filler),
+    "Examined: p?a-??r?-???s?-t?e?: piece": ItemData(54150100, ItemClassification.filler),
+    "Examined: ..__JOKZI_OZO__..: council": ItemData(54150101, ItemClassification.filler),
+    "Examined: ..__JOKZI_OZO__..: fairy": ItemData(54150102, ItemClassification.filler),
+    "Examined: ..__JOKZI_OZO__..: isabel": ItemData(54150103, ItemClassification.filler),
+    "Examined: ..__JOKZI_OZO__..: effigy": ItemData(54150104, ItemClassification.filler),
+    "Examined: ..__JOKZI_OZO__..: sun": ItemData(54150105, ItemClassification.filler),
+    "Examined: ..__JOKZI_OZO__..: gate::gate::?/::G:a;;T:E": ItemData(54150106, ItemClassification.filler),
+    "Examined: ..__JOKZI_OZO__..: gate::gaGATE::te::?/..::G:a;;T:E": ItemData(54150107, ItemClassification.filler),
+    "Examined: ..__JOKZI_OZO__..: GELI": ItemData(54150108, ItemClassification.filler),
+    "Examined: ..__GOLEM_MAINTENANCE__..: cavelight": ItemData(54150109, ItemClassification.filler),
+    "Examined: ..__GOLEM_MAINTENANCE__..: grand door": ItemData(54150110, ItemClassification.filler),
+    "Examined: ..__GOLEM_MAINTENANCE__..: veilk spear": ItemData(54150111, ItemClassification.filler),
+    "Examined: ..__GOLEM_MAINTENANCE__..: geli": ItemData(54150112, ItemClassification.filler),
+    "Examined: ..__GOLEM_MAINTENANCE__..: lesser terminal": ItemData(54150113, ItemClassification.filler),
+    "Examined: ..__GOLEM_MAINTENANCE__..: greater terminal": ItemData(54150114, ItemClassification.filler),
+    "Examined: ..__GOLEM_MAINTENANCE__..: distribution door": ItemData(54150115, ItemClassification.filler),
+    "Examined: ..__GOLEM_MAINTENANCE__..: instruction workspace": ItemData(54150116, ItemClassification.filler),
+    "Examined: ..__GOLEM_MAINTENANCE__..: preprocessing metals": ItemData(54150117, ItemClassification.filler),
+    "Examined: ..__GOLEM_MAINTENANCE__..: ruined glazika": ItemData(54150118, ItemClassification.filler),
+    "Examined: ..__GOLEM_MAINTENANCE__..: dog": ItemData(54150119, ItemClassification.filler),
+    "Examined: ..__GOLEM_MAINTENANCE__..: archival sludge": ItemData(54150120, ItemClassification.filler),
+    "Examined: ..__GOLEM_MAINTENANCE__..: dull structure": ItemData(54150121, ItemClassification.filler),
+    "Examined: ..__GOLEM_MAINTENANCE__..: shelf": ItemData(54150122, ItemClassification.filler),
+    "Examined: ..__GOLEM_MAINTENANCE__..: echo chamber": ItemData(54150123, ItemClassification.filler),
+    "Examined: ..__GOLEM_MAINTENANCE__..: lightning terminals": ItemData(54150124, ItemClassification.filler),
+    "Examined: ..__GOLEM_MAINTENANCE__..: stowed tools": ItemData(54150125, ItemClassification.filler),
+    "Examined: ..__GOLEM_MAINTENANCE__..: impressor": ItemData(54150126, ItemClassification.filler),
+    "Examined: ..__GOLEM_MAINTENANCE__..: archival hatch": ItemData(54150127, ItemClassification.filler),
+    "Examined: ..__GOLEM_MAINTENANCE__..: husk": ItemData(54150128, ItemClassification.filler),
+    "Examined: ..__GOLEM_MAINTENANCE__..: constructor": ItemData(54150129, ItemClassification.filler),
+    "Examined: ..__GOLEM_MAINTENANCE__..: kivskin": ItemData(54150130, ItemClassification.filler),
+    "Examined: ..__GOLEM_MAINTENANCE__..: repairfriend": ItemData(54150131, ItemClassification.filler),
+    "Examined: ..__GOLEM_MAINTENANCE__..: golem": ItemData(54150132, ItemClassification.filler),
+    "Examined: ..__GOLEM_MAINTENANCE__..: dozkallvi": ItemData(54150133, ItemClassification.filler),
+    "Examined: ..__GOLEM_MAINTENANCE__..: gauntlet": ItemData(54150134, ItemClassification.filler),
+    "Examined: ..__GOLEM_MAINTENANCE__..: dullzika": ItemData(54150135, ItemClassification.filler),
+    "Examined: ..__GOLEM_MAINTENANCE__..: warped container": ItemData(54150136, ItemClassification.filler),
+    "Examined: ..__GOLEM_MAINTENANCE__..: translation core": ItemData(54150137, ItemClassification.filler),
+    "Examined: ..__GOLEM_MAINTENANCE__..: »õGQàº3¾õ”cR%": ItemData(54150138, ItemClassification.filler),
+    "Examined: ..__GOLEM_MAINTENANCE__..: foundation golem": ItemData(54150139, ItemClassification.filler),
+    "Examined: ::/FRAME/: daemon mimic": ItemData(54150140, ItemClassification.filler),
+    "Examined: ::/FRAME/: wrk": ItemData(54150141, ItemClassification.filler),
+    "Examined: ::/FRAME/: clw": ItemData(54150142, ItemClassification.filler),
+    "Examined: ::/FRAME/: net": ItemData(54150143, ItemClassification.filler),
+    "Examined: ::/FRAME/: enfc": ItemData(54150144, ItemClassification.filler),
+    "Examined: ::/FRAME/: seer": ItemData(54150145, ItemClassification.filler),
+    "Examined: ::/FRAME/: archn": ItemData(54150146, ItemClassification.filler),
+    "Examined: ::/FRAME/: dct": ItemData(54150147, ItemClassification.filler),
+    "Examined: ::/FRAME/: spwn": ItemData(54150148, ItemClassification.filler),
+    "Examined: ::/FRAME/: idea": ItemData(54150149, ItemClassification.filler),
+    "Examined: ::/FRAME/: imp": ItemData(54150150, ItemClassification.filler),
+    "Examined: ::/FRAME/: anti": ItemData(54150151, ItemClassification.filler),
+    "Examined: ::/FRAME/: wheel": ItemData(54150152, ItemClassification.filler),
+    "Examined: ::/FRAME/: radio": ItemData(54150153, ItemClassification.filler),
+    "Examined: ::/FRAME/: basterminal": ItemData(54150154, ItemClassification.filler),
+    "Examined: ::/FRAME/: exchange terminal": ItemData(54150155, ItemClassification.filler),
+    "Examined: ::/FRAME/: interloper": ItemData(54150156, ItemClassification.filler),
+    "Examined: ..__PALE_HALLS__..: idril": ItemData(54150157, ItemClassification.filler),
+    "Examined: ..__PALE_HALLS__..: telyu": ItemData(54150158, ItemClassification.filler),
+    "Examined: ..__PALE_HALLS__..: spire status": ItemData(54150159, ItemClassification.filler),
+    "Examined: ..__PALE_HALLS__..: map": ItemData(54150160, ItemClassification.filler),
+    "Examined: ..__PALE_HALLS__..: adull's altar": ItemData(54150161, ItemClassification.filler),
+    "Examined: ..__PALE_HALLS__..: lesser mind status": ItemData(54150162, ItemClassification.filler),
+    "Examined: ..__PALE_HALLS__..: support pod": ItemData(54150163, ItemClassification.filler),
+    "Examined: ..__PALE_HALLS__..: silencing spire": ItemData(54150164, ItemClassification.filler),
+    "Examined: ..__PALE_HALLS__..: dullima pod": ItemData(54150165, ItemClassification.filler),
+    "Examined: ..__PALE_HALLS__..: spinal tether": ItemData(54150166, ItemClassification.filler),
+    "Examined: ..__PALE_HALLS__..: malvi's body": ItemData(54150167, ItemClassification.filler),
+    "Examined: ..__PALE_HALLS__..: knowledge pool": ItemData(54150168, ItemClassification.filler),
+    "Examined: ..__PALE_HALLS__..: heart terminal": ItemData(54150169, ItemClassification.filler),
+    "Examined: ..__PALE_HALLS__..: priority branch": ItemData(54150170, ItemClassification.filler),
+    "Examined: ..__PALE_HALLS__..: spectral mass": ItemData(54150171, ItemClassification.filler),
+    "Examined: ..__PALE_HALLS__..: spectral figure": ItemData(54150172, ItemClassification.filler),
+    "Examined: ..__PALE_HALLS__..: spectral shape": ItemData(54150173, ItemClassification.filler),
+    "Examined: ..__PALE_HALLS__..: spectral attendant": ItemData(54150174, ItemClassification.filler),
+    "Examined: ..__PALE_HALLS__..: spectral jutskin": ItemData(54150175, ItemClassification.filler),
+    "Examined: ..__PALE_HALLS__..: spectral horror": ItemData(54150176, ItemClassification.filler),
+    "Examined: ..__PALE_HALLS__..: spectral golem": ItemData(54150177, ItemClassification.filler),
+    "Examined: ..__PALE_HALLS__..: spectral glazika": ItemData(54150178, ItemClassification.filler),
+    "Examined: ..__PALE_HALLS__..: possessed archivist": ItemData(54150179, ItemClassification.filler),
+    "Examined: ..__PALE_HALLS__..: spectral archival golem": ItemData(54150180, ItemClassification.filler),
+    "Examined: ..__PALE_HALLS__..: spectral eye": ItemData(54150181, ItemClassification.filler),
+    "Examined: ..__PALE_HALLS__..: possessed miltza": ItemData(54150182, ItemClassification.filler),
+    "Examined: ..__PALE_HALLS__..: reanimated golem": ItemData(54150183, ItemClassification.filler),
+    "Examined: ..__PALE_HALLS__..: spectral kiv": ItemData(54150184, ItemClassification.filler),
+    "Examined: ..__PALE_HALLS__..: spectral qou": ItemData(54150185, ItemClassification.filler),
+    "Examined: ..__PALE_HALLS__..: spectral dull golem": ItemData(54150186, ItemClassification.filler),
+    "Examined: ..__PALE_HALLS__..: ceremony": ItemData(54150187, ItemClassification.filler),
+    "Examined: ..__PALE_HALLS__..: ceremony vein": ItemData(54150188, ItemClassification.filler),
+    "Examined: ..__PALE_HALLS__..: ceremony tendril": ItemData(54150189, ItemClassification.filler),
+    "Examined: ..__PALE_HALLS__..: vekoa": ItemData(54150190, ItemClassification.filler),
+}
+
+moditems_obski = {
+    "Visited: /local/beneath/obeski/": ItemData(54149000, ItemClassification.filler),
+    "O-BSK-I: Other Obesk piece": ItemData(54149001, ItemClassification.filler),
+    "O-BSK-I: Talked to piece": ItemData(54149002, ItemClassification.filler),
+    "Visited: /local/uncosm/simulacrum/": ItemData(54149003, ItemClassification.filler),
+    "Visited: /local/uncosm/perish/": ItemData(54149004, ItemClassification.filler),
+}
+
+moditems_surfacerunning = {
+    "Visited: /local/uncosm/surfacerunning/": ItemData(54149005, ItemClassification.filler),
+    "Memory Hole: Surface Running, Bone chapter unlock": ItemData(54149006, ItemClassification.filler),
+    "Memory Hole: Surface Running, Eyes chapter unlock": ItemData(54149007, ItemClassification.filler),
+    "Memory Hole: Surface Running, Claws chapter unlock": ItemData(54149008, ItemClassification.filler),
+    "Memory Hole: Surface Running, Ichor chapter unlock": ItemData(54149009, ItemClassification.filler),
+    "Memory Hole: Surface Running, Light chapter unlock": ItemData(54149010, ItemClassification.filler),
+    "Memory Hole: Surface Running, Supplemental chapter unlock": ItemData(54149011, ItemClassification.filler),
+}
+
+moditems_quiz = {
+    "Visited: /local/uncosm/quiz/": ItemData(54149012, ItemClassification.filler),
+}
+
+moditems_maze = {
+    "First Chat (Incoherent, Funnier Maze): Caged Demon": ItemData(54149013, ItemClassification.filler),
+    "First Chat (Incoherent, Funnier Maze): Demon Unitied": ItemData(54149014, ItemClassification.progression),
+    "First Chat (Incoherent, Funnier Maze): Reached End": ItemData(54149015, ItemClassification.filler),
+}
+
+#moditems_dialoguetelephone = {
+#    "connection_attempted": ItemData(54149016, ItemClassification.filler), # Menu: Examined Dendritic Cyst is required to be progression because of this
+#}
+
+moditems_kotzu = {
+    "Visited: /local/uncosm/claws/": ItemData(54149017, ItemClassification.filler),
+    "Visited: /local/uncosm/outside/": ItemData(54149018, ItemClassification.filler),
+    "Visited: /local/uncosm/better/": ItemData(54149019, ItemClassification.filler),
+    "Visited: /local/uncosm/wound/": ItemData(54149020, ItemClassification.filler),
+    "Visited: /local/uncosm/footsteps/": ItemData(54149021, ItemClassification.filler),
+    "Visited: /local/uncosm/forward/": ItemData(54149022, ItemClassification.filler),
+    "Visited: /local/uncosm/colored/": ItemData(54149023, ItemClassification.filler),
+    "Visited: /local/uncosm/connections/": ItemData(54149024, ItemClassification.filler),
+    "Visited: /local/uncosm/improvement/": ItemData(54149025, ItemClassification.filler),
+    "Visited: /local/uncosm/influence/": ItemData(54149026, ItemClassification.filler),
+    "Visited: /local/uncosm/mindcore/": ItemData(54149027, ItemClassification.filler),
+    "Visited: /local/uncosm/kotzu/": ItemData(54149028, ItemClassification.filler),
+    "Memory Hole: Kotzu, Zokka Found": ItemData(54149029, ItemClassification.filler),
+    "Memory Hole: Kotzu, Moth Return": ItemData(54149030, ItemClassification.filler),
+    "Memory Hole: Kotzu, Intro Complete": ItemData(54149031, ItemClassification.progression),
+    "Memory Hole: Kotzu, Azzun Dialogue": ItemData(54149032, ItemClassification.filler),
+    "Memory Hole: Kotzu, Zuteki Dialogue": ItemData(54149033, ItemClassification.filler),
+}
+
+moditems_humoroushumors = {
+    "::/FRAME/: Firing Squad Reward BFG": ItemData(54149034, ItemClassification.filler),
+    "::/FRAME/: Firing Squad Reward Grenade": ItemData(54149035, ItemClassification.filler),
+    "::/FRAME/: Firing Squad Reward Rifle": ItemData(54149036, ItemClassification.filler),
+    "::/FRAME/: Firing Squad Reward Shotgun": ItemData(54149037, ItemClassification.filler),
+    "::/FRAME/: Firing Squad Reward Sniper": ItemData(54149038, ItemClassification.filler),
+    "::/FRAME/: Hazard": ItemData(54149039, ItemClassification.filler),
+    "::/FRAME/: Palestone unlock": ItemData(54149040, ItemClassification.filler),
+}
+
+moditems_vielk = {
+    "Visited: /local/uncosm/vielk/": ItemData(54149041, ItemClassification.filler),
+}
+
+modscansanity_items_obski = {
+    "Examined: o???-??b????-?s-???k?-i??: piece": ItemData(54159000, ItemClassification.filler),
+}
+
+modscansanity_items_theirstreets = {
+    "Examined: ..__CITY_SURFACE__..: fountain bench": ItemData(54159001, ItemClassification.filler),
+    "Examined: ..__CITY_SURFACE__..: bridge bench": ItemData(54159002, ItemClassification.filler),
+    "Examined: ..__CITY_SURFACE__..: streets bench": ItemData(54159003, ItemClassification.filler),
+    "Examined: ..__CITY_SURFACE__..: park bench": ItemData(54159004, ItemClassification.filler),
+    "Examined: ..__CITY_SURFACE__..: city bench": ItemData(54159005, ItemClassification.filler),
+    "Examined: ..__CITY_SURFACE__..: waterfront bench": ItemData(54159006, ItemClassification.filler),
+}
+
+masteritem_table = {**item_table,
+                        **moditems_obski,
+                        **moditems_surfacerunning,
+                        **moditems_quiz,
+                        **moditems_maze,
+                        **moditems_kotzu,
+                        **moditems_humoroushumors,
+                        **moditems_vielk,
+                        **scansanity_item_table,
+                        **modscansanity_items_obski,
+                        **modscansanity_items_theirstreets}
