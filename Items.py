@@ -153,7 +153,7 @@ item_table = {
     "Visited: /local/uncosm/parasite/": ItemData(54140910, ItemClassification.filler),
     "Visited: /local/uncosm/sorry/": ItemData(54140911, ItemClassification.filler),
     "Visited: /local/uncosm/spire/": ItemData(54140912, ItemClassification.filler),
-    "Visited: /local/uncosm/surface": ItemData(54140913, ItemClassification.filler),
+    "Visited: /local/uncosm/surface/": ItemData(54140913, ItemClassification.filler),
     "Visited: /local/uncosm/veilk/": ItemData(54140914, ItemClassification.filler),
     "Visited: /local/uncosm/yuzku/": ItemData(54140915, ItemClassification.filler),
     "Visited: /local/uncosm/zuzucri/": ItemData(54140916, ItemClassification.filler),

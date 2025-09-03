@@ -74,7 +74,7 @@ location_table = {
     # EP3
     "Menu: EP3 Intro": LocationData(154140054, "Menu"),
     "Visited: /local/ocean/embassy/golem/": LocationData(154140055, "Golem Maintenance"),
-    "Golem Maintenance: Dog Examine": LocationData(154140056, "Golem Maintenance"),
+    "Golem Maintenance: Dog Examine": LocationData(154140056, "Menu"), # multiple places, despite being in golems
     "Golem Maintenance: Metatrauma": LocationData(154140057, "Golem Maintenance"),
     "Golem Maintenance: Foundation Golem start": LocationData(154140058, "Golem Maintenance"),
     "Golem Maintenance: Foundation Golem end": LocationData(154140059, "Golem Maintenance"),
@@ -123,7 +123,7 @@ location_table = {
     "::/FRAME/: Won Escape": LocationData(154140100, "::/FRAME/"), # Geli unitied; also set e3a2__geliintro and ozo__ozogeli
     "::/FRAME/: ???": LocationData(154140101, "::/FRAME/"),
     # ODEN
-    "Golem Maintenance: Dog Unity": LocationData(154140102, "Golem Maintenance"),
+    "Golem Maintenance: Dog Unity": LocationData(154140102, "Menu"), # multiple places, despite being in golems
     "Jokzi Ozo: Event: Council - geli": LocationData(154140103, "Jokzi Ozo"), # Council Geli event
     "Jokzi Ozo: Event: Council - isabel": LocationData(154140104, "Jokzi Ozo"), # Council Isabel event
     "Jokzi Ozo: Event: Council - fairy": LocationData(154140105, "Jokzi Ozo"), # Council Fairy event
@@ -158,7 +158,7 @@ location_table = {
     "Visited: /local/uncosm/parasite/": LocationData(154140910, "Memory Hole"),
     "Visited: /local/uncosm/sorry/": LocationData(154140911, "Memory Hole"),
     "Visited: /local/uncosm/spire/": LocationData(154140912, "Memory Hole"),
-    "Visited: /local/uncosm/surface": LocationData(154140913, "Memory Hole"),
+    "Visited: /local/uncosm/surface/": LocationData(154140913, "Memory Hole"),
     "Visited: /local/uncosm/veilk/": LocationData(154140914, "Memory Hole"),
     "Visited: /local/uncosm/yuzku/": LocationData(154140915, "Memory Hole"),
     "Visited: /local/uncosm/zuzucri/": LocationData(154140916, "Memory Hole"),
@@ -185,7 +185,7 @@ def getrules(world: "CorruObserverWorld"):
         "Hub: Funfriend EP1 Fed dialogue": lambda state: state.has("Menu: EP1 Fed", world.player),
         "The Embassy: Completed Suspicion": lambda state: state.has("The Embassy: Completed Discovery", world.player),
         "City Streets: EP1 End Velzie Encounter": lambda state: state.has("The Embassy: Completed Suspicion", world.player) and state.has("First Chat: Be Honest", world.player),
-        "Seen Proxyfriend": lambda state: (state.has("Menu: EP1 Fed", world.player) and (state.can_reach_region("Their City", world.player) or state.can_reach_region("Their Waters", world.player) or state.can_reach_region("The Void", world.player))),
+        "Seen Proxyfriend": lambda state: (state.has("Menu: EP1 Fed", world.player) and (state.can_reach_region("Their City", world.player) or state.can_reach_region("Their Waters", world.player) or state.can_reach_region("The Void", world.player) or (state.has("Recosm: God End State", world.player) and (state.can_reach_region("Hello", world.player))))),
         "Hub: Funfriend God Dialogue": lambda state: state.has("Hub: Funfriend EP1 Fed dialogue", world.player),
         "Menu: EP2 Intro": lambda state: (state.has("Menu: Completed Intro", world.player) and state.has("Progressive EP0 Epilogue", world.player) and state.has("Menu: EP1 Shown Materials", world.player) and state.has("City Streets: EP1 End Velzie Encounter", world.player)),
         "The Embassy: Framing Device Introduction": lambda state: state.has("Menu: EP2 Intro", world.player),
@@ -216,7 +216,8 @@ def getrules(world: "CorruObserverWorld"):
         "Jokzi Ozo: Enter dark room": lambda state: state.has("City Streets: Isabel Unitied", world.player),
         "Jokzi Ozo: Council Dance": lambda state: (state.has("The Void: Fairy Unitied", world.player) and state.has("City Streets: Isabel Unitied", world.player)) or (state.has("City Streets: Isabel Unitied", world.player) and state.has("::/FRAME/: Won Escape", world.player)) or (state.has("The Void: Fairy Unitied", world.player) and state.has("::/FRAME/: Won Escape", world.player)),
         "Effigy seen": lambda state: ((state.can_reach_region("Their City", world.player) and ((state.can_reach_region("Beneath", world.player)) or (state.has("Menu: EP2 Intro", world.player) and state.has("Jokzi Ozo: Hunger Mask", world.player)))) or (state.can_reach_region("Beneath", world.player)) or (state.can_reach_region("Memory Hole", world.player)) or (state.can_reach_region("Parasite Plane", world.player) and state.has("Hub: Framing Device Installation", world.player)) or (state.can_reach_region("Jokzi Ozo", world.player) and state.has("City Streets: Isabel Unitied", world.player))),
-        "Golem Maintenance: Dog Unity": lambda state: (state.has("Jokzi Ozo: Unity Mask", world.player) and state.has("::/FRAME/: Won Escape", world.player)),
+        "Golem Maintenance: Dog Examine": lambda state: state.can_reach_region("Golem Maintenance", world.player) or ((state.can_reach_region("::/FRAME/", world.player) or state.can_reach_region("Jokzi Ozo", world.player)) and state.has("Golem Maintenance: Dog Unity", world.player)),
+        "Golem Maintenance: Dog Unity": lambda state: (state.has("Jokzi Ozo: Unity Mask", world.player) and state.has("::/FRAME/: Won Escape", world.player)) and (state.can_reach_region("Golem Maintenance", world.player) or ((state.can_reach_region("::/FRAME/", world.player) or state.can_reach_region("Jokzi Ozo", world.player)) and state.has("Golem Maintenance: Dog Unity", world.player))),
         "Jokzi Ozo: Event: Council - geli": lambda state: state.has("::/FRAME/: Won Escape", world.player),
         "Jokzi Ozo: Event: Council - isabel": lambda state: state.has("City Streets: Isabel Unitied", world.player) and state.has("First Chat (Incoherent): Interview Lady Unitied", world.player),
         "Jokzi Ozo: Event: Council - fairy": lambda state: state.has("The Void: Fairy Unitied", world.player) and state.has("Menu: EP3 Intro", world.player),

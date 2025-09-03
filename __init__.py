@@ -48,7 +48,7 @@ class CorruObserverWorld(World):
             enabled_mod_locations.append(modlocations_humoroushumors)
         if "vielk" in self.options.mods:
             enabled_mod_locations.append(modlocations_vielk)
-        if "theirstrets" in self.options.mods:
+        if "theirstreets" in self.options.mods:
             if self.options.scansanity:
                 enabled_mod_locations.append(modscansanity_locations_theirstreets)
 
@@ -205,11 +205,19 @@ class CorruObserverWorld(World):
         parasite_region.connect(dullvessel_region)
         parasite_region.add_exits({"Jokzi Ozo": "Parasite Plane Ozo warp"}, {"Jozki Ozo": lambda state: (state.has("Parasite Plane: Gamer Effigy Unitied", self.player) and state.has("City Streets: Isabel Unitied", self.player))})
         parasite_region.connect(beneath_region)
-        firstchat_region.add_exits({"Beneath Depths": "Interview Beneath Depths warp"}, {"Beneath Depths": lambda state: ((((state.has("Progressive EP0 Epilogue", self.player) and state.has("Menu: EP1 Shown Materials", self.player)) and state.has("Menu: EP2 Intro", self.player)) or state.has("Jokzi Ozo: Hunger Mask", self.player)) and state.has("First Chat: Be Honest", self.player))})
-        firstchat_region.add_exits({"Clemens Romanus": "Interview Clemens Romanus warp"}, {"Clemens Romanus": lambda state: ((((state.has("Progressive EP0 Epilogue", self.player) and state.has("Menu: EP1 Shown Materials", self.player)) and state.has("Menu: EP2 Intro", self.player)) or state.has("Jokzi Ozo: Hunger Mask", self.player)) and state.has("First Chat: Be Honest", self.player))})
+        firstchat_region.add_exits({"Beneath Depths": "Interview Beneath Depths warp"}, {"Beneath Depths": lambda state: (((state.can_reach_region("Clemens Romanus", self.player) and state.has("Menu: EP2 Intro", self.player)) or state.has("Jokzi Ozo: Hunger Mask", self.player)) and state.has("First Chat: Be Honest", self.player))})
+        self.multiworld.register_indirect_condition(self.multiworld.get_region("Clemens Romanus", self.player), self.multiworld.get_entrance("Interview Beneath Depths warp", self.player))
+        firstchat_region.add_exits({"Clemens Romanus": "Interview Clemens Romanus warp"}, {"Clemens Romanus": lambda state: (((state.can_reach_region("Clemens Romanus", self.player) and state.has("Menu: EP2 Intro", self.player)) or state.has("Jokzi Ozo: Hunger Mask", self.player)) and state.has("First Chat: Be Honest", self.player))})
+        self.multiworld.register_indirect_condition(self.multiworld.get_region("Clemens Romanus", self.player), self.multiworld.get_entrance("Interview Clemens Romanus warp", self.player))
         embassy_region.add_exits({"Golem Maintenance": "Embassy Continue Iteration Warp"}, {"Golem Maintenance": lambda state: (state.has("Menu: EP2 Intro", self.player) and state.has("Hub: Framing Device Installation", self.player)) and state.has("Menu: EP3 Intro", self.player)})
+        embassy_region.add_exits({"City Streets": "Suspicion Continue Memory Stream Warp"}, {"City Streets": lambda state: state.has("The Embassy: Completed Discovery", self.player)})
         golems_region.add_exits({"::/FRAME/": "Door Gap"}, {"::/FRAME/": lambda state: state.has("Jokzi Ozo: Hunger Mask", self.player)})
+        frame_region.add_exits({"Jokzi Ozo": "Escape"}, {"Jokzi Ozo": lambda state: state.has("::/FRAME/: Won Escape", self.player)})
         ozo_region.add_exits({"::/FRAME/": "!!__WHEEL__!! (Replay)"}, {"::/FRAME/": lambda state: state.has("::/FRAME/: Won Escape", self.player)})
+        ozo_region.add_exits({"The Depths": "!!__gate::L‹ïAöIÁå__!!"}, {"The Depths": lambda state: (state.can_reach_region("Beneath", self.player) or state.can_reach_entrance("Escape", self.player) or state.can_reach_entrance("Parasite Plane Ozo warp", self.player))})
+        self.multiworld.register_indirect_condition(self.multiworld.get_region("Beneath", self.player), self.multiworld.get_entrance("!!__gate::L‹ïAöIÁå__!!", self.player))
+        self.multiworld.register_indirect_condition(self.multiworld.get_region("Parasite Plane", self.player), self.multiworld.get_entrance("!!__gate::L‹ïAöIÁå__!!", self.player))
+        self.multiworld.register_indirect_condition(self.multiworld.get_region("::/FRAME/", self.player), self.multiworld.get_entrance("!!__gate::L‹ïAöIÁå__!!", self.player))
         golems_region.add_exits({"Pale Halls": "Golem Maintenance Continue Iteration Warp"}, {"Pale Halls": lambda state: state.has("Menu: EP4 Intro", self.player)})
         
 
@@ -267,9 +275,9 @@ class CorruObserverWorld(World):
         location_name_to_var["Pale Halls"].locations.append(victory_loc)
         
         if "maze" in self.options.mods:
-            add_rule(self.multiworld.get_location("First Chat (Incoherent, Funnier Maze): Caged Demon", self.player), lambda state: ((((state.has("Progressive EP0 Epilogue", self.player) and state.has("Menu: EP1 Shown Materials", self.player)) and state.has("Menu: EP2 Intro", self.player)) or state.has("Jokzi Ozo: Hunger Mask", self.player)) and state.has("First Chat: Be Honest", self.player)))
-            add_rule(self.multiworld.get_location("First Chat (Incoherent, Funnier Maze): Demon Unitied", self.player), lambda state: ((((((state.has("Progressive EP0 Epilogue", self.player) and state.has("Menu: EP1 Shown Materials", self.player)) and state.has("Menu: EP2 Intro", self.player)) or state.has("Jokzi Ozo: Hunger Mask", self.player)) and state.has("First Chat: Be Honest", self.player))) and state.has("Jokzi Ozo: Unity Mask", self.player)))
-            add_rule(self.multiworld.get_location("First Chat (Incoherent, Funnier Maze): Reached End", self.player), lambda state: ((((state.has("Progressive EP0 Epilogue", self.player) and state.has("Menu: EP1 Shown Materials", self.player)) and state.has("Menu: EP2 Intro", self.player)) or state.has("Jokzi Ozo: Hunger Mask", self.player)) and state.has("First Chat: Be Honest", self.player)))
+            add_rule(self.multiworld.get_location("First Chat (Incoherent, Funnier Maze): Caged Demon", self.player), lambda state: (((state.can_reach_region("Clemens Romanus", self.player) and state.has("Menu: EP2 Intro", self.player)) or state.has("Jokzi Ozo: Hunger Mask", self.player)) and state.has("First Chat: Be Honest", self.player)))
+            add_rule(self.multiworld.get_location("First Chat (Incoherent, Funnier Maze): Demon Unitied", self.player), lambda state: (((((state.can_reach_region("Clemens Romanus", self.player) and state.has("Menu: EP2 Intro", self.player)) or state.has("Jokzi Ozo: Hunger Mask", self.player)) and state.has("First Chat: Be Honest", self.player))) and state.has("Jokzi Ozo: Unity Mask", self.player)))
+            add_rule(self.multiworld.get_location("First Chat (Incoherent, Funnier Maze): Reached End", self.player), lambda state: (((state.can_reach_region("Clemens Romanus", self.player) and state.has("Menu: EP2 Intro", self.player)) or state.has("Jokzi Ozo: Hunger Mask", self.player)) and state.has("First Chat: Be Honest", self.player)))
             #self.multiworld.completion_condition[self.player] = lambda state: (state.has("The Void: Fairy Unitied", self.player) and state.has("City Streets: Isabel Unitied", self.player) and state.has("City Streets: Fawners Effigies Unitied", self.player) and state.has("Beneath: Dancer Effigy Unitied", self.player) and state.has("Parasite Plane: Gamer Effigy Unitied", self.player) and state.has("Memory Hole: Effigy: Sipper Effigy Unitied", self.player) and state.has("Progressive Memory Hole Cavik", self.player, 2) and state.has("First Chat (Incoherent): Interview Lady Unitied", self.player) and state.has("::/FRAME/: Won Escape", self.player) and state.has("Golem Maintenance: Dog Unity", self.player) and state.has("First Chat (Incoherent, Funnier Maze): Demon Unitied", self.player))
         #if "dialoguetelephone" in self.options.mods:
         #    add_rule(self.multiworld.get_location("connection_attempted", self.player), lambda state: state.has("Menu: Examined Dendritic Cyst", self.player))
