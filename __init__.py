@@ -235,7 +235,7 @@ class CorruObserverWorld(World):
         clemens_region.add_exits({"Referential Scar": "!!__REFERENTIAL SCAR__!! (Clemens Romanus)"}, {"Referential Scar": lambda state: state.has("Referential Scar (Clemens Romanus)", self.player) and (state.has("Jokzi Ozo: Joy Mask", self.player))})
         scar_region.add_exits({"Clemens Romanus": "!!__REFERENTIAL SCAR__!! (to Clemens Romanus)"}, {"Clemens Romanus": lambda state: state.has("Referential Scar (Clemens Romanus)", self.player)})
         clemens_region.add_exits({"Car": "˜CâR… (Clemens Romanus)"}, {"Car": lambda state: state.has("Jokzi Ozo: Joy Mask", self.player) and state.has("Car: Intro", self.player)})
-        streets_region.add_exits({"Beneath": "City Beneath Warp"}, {"Beneath": lambda state: logic.canAccessCityStreetDocksFlip(state, self.player) and state.has("Jokzi Ozo: Hunger Mask", self.player)})
+        streets_region.add_exits({"Beneath": "City Beneath Warp"}, {"Beneath": lambda state: logic.canAccessCityStreetDocksFlip(state, self.player)})
         self.multiworld.register_indirect_condition(self.multiworld.get_region("Beneath", self.player), self.multiworld.get_entrance("City Beneath Warp", self.player)) # baffling but necessary
         self.multiworld.register_indirect_condition(self.multiworld.get_region("Car", self.player), self.multiworld.get_entrance("City Beneath Warp", self.player))
         self.multiworld.register_indirect_condition(self.multiworld.get_region("Aquarium", self.player), self.multiworld.get_entrance("City Beneath Warp", self.player))
