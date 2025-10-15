@@ -227,7 +227,7 @@ class CorruObserverWorld(World):
         uncosm_region.add_exits({"Recosm": "!!__HOME__!!"}, {"Recosm": lambda state: state.has("Hub: Funfriend God Dialogue", self.player)})
         uncosm_region.connect(memoryhole_region)
         memoryhole_region.connect(memoryholeeffigy_region)
-        beneath_region.connect(memoryholeeffigy_region)
+        beneath_region.add_exits({"Memory Hole (Effigy)": "!!__±ƒƒÍ_¾y__!!"}, {"Memory Hole (Effigy)": lambda state: state.has("Jokzi Ozo: Freedom Mask", self.player)})
         recosm_region.add_exits({"Cache": "!!__MEMBRANE_LESION__!!"}, {"Cache": lambda state: state.has("Recosm: God End State", self.player)})
         clemens_region.connect(theirvessel_region)
         clemens_region.add_exits({"Beneath": "Clemens Beneath Warp"}, {"Beneath": lambda state: state.has("Menu: EP2 Intro", self.player)})
@@ -306,7 +306,7 @@ class CorruObserverWorld(World):
         self.multiworld.register_indirect_condition(self.multiworld.get_region("Referential Scar", self.player), self.multiworld.get_entrance("!!__gate::L‹ïAöIÁå__!!", self.player))
         golems_region.add_exits({"Pale Halls": "Golem Maintenance Continue Iteration Warp"}, {"Pale Halls": lambda state: state.has("Menu: EP4 Intro", self.player)})
 
-        labs_region.add_exits({"Referential Scar": "!!__REFERENTIAL SCAR__!! (Labs)"}, {"Referential Scar": lambda state: state.has("Referential Scar (Labs)", self.player) and (state.has("Jokzi Ozo: Joy Mask", self.player))})
+        labs_region.add_exits({"Referential Scar": "!!__REFERENTIAL SCAR__!! (Labs)"}, {"Referential Scar": lambda state: state.has("Referential Scar (Labs)", self.player) and (state.has("Jokzi Ozo: Joy Mask", self.player) and state.has("Labs: Wakizet Unity", self.player))})
         scar_region.add_exits({"Labs": "!!__REFERENTIAL SCAR__!! (to Labs)"}, {"Labs": lambda state: state.has("Referential Scar (Labs)", self.player)})
         
         car_region.connect(streets_region)
