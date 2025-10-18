@@ -7225,6 +7225,31 @@ ____END
     }
 
     if (arrayOfStringURLsLoaded.includes("https://file.garden/aNd0eqDxKF1uOREs/lobotomize.js")){
+		if(!env.dialogues["mothotomy"]){
+			env.dialogues["mothotomy"] = generateDialogueObject(`
+start
+    moth
+        huh?
+
+    self
+        get over here, lobotomy time
+
+    moth
+        i dont think the spike is strong enough to d-
+            EXEC::setTimeout(()=>{play("stab");change("mothotomy",1);mothkill()},400)
+            SILENT::
+
+    RESPONSES::self
+        cant undo this now<+>END
+END
+`);
+		};
+		env.dialogues["++moth"].start.responses[0].replies.push({
+			name: "i am tired of you",
+			showIf: [["mothotomy", 0]],
+			destination: "CHANGE::mothotomy"
+		})
+	};
         env.dialogues["++moth"].start.responses[0].replies.push({
 			name: "i am tired of you",
 			showIf: [["mothotomy", 1], ["LOC!!mothotomy", false]],
