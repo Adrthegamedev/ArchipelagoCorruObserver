@@ -1,7 +1,7 @@
 from BaseClasses import Region, Location, Item, ItemClassification, Tutorial
 from worlds.AutoWorld import World, WebWorld
-from .Items import CorruObserverItem, ItemData, item_table, moditems_obski, moditems_surfacerunning, moditems_quiz, moditems_maze, moditems_kotzu, moditems_humoroushumors, moditems_vielk, scansanity_item_table, modscansanity_items_obski, modscansanity_items_theirstreets, masteritem_table
-from .Locations import CorruObserverLocation, location_table, getrules, modlocations_obski, modlocations_surfacerunning, modlocations_quiz, modlocations_maze, modlocations_kotzu, modlocations_humoroushumors, modlocations_vielk, scansanity_location_table, getscansanityrules, modscansanity_locations_obski, modscansanity_locations_theirstreets, masterlocation_table
+from .Items import CorruObserverItem, ItemData, item_table, moditems_obski, moditems_surfacerunning, moditems_quiz, moditems_maze, moditems_kotzu, moditems_humoroushumors, moditems_vielk, moditems_mothlobotomy, moditems_councilaltdance, scansanity_item_table, modscansanity_items_obski, modscansanity_items_theirstreets, masteritem_table
+from .Locations import CorruObserverLocation, location_table, getrules, modlocations_obski, modlocations_surfacerunning, modlocations_quiz, modlocations_maze, modlocations_kotzu, modlocations_humoroushumors, modlocations_vielk, modlocations_mothlobotomy, modlocations_councilaltdance,scansanity_location_table, getscansanityrules, modscansanity_locations_obski, modscansanity_locations_theirstreets, masterlocation_table
 from .Options import CorruObserverOptions, Mods
 from . import logic
 from worlds.generic.Rules import add_rule
@@ -11,8 +11,8 @@ import typing
 
 class CorruObserverWeb(WebWorld):
     setup_en = Tutorial(
-        "setup",
-        "description here",
+        "Multiworld Setup Guide",
+        "A guide for setting up corru.observer to be played in Archipelago.",
         "en",
         "setup_en.md",
         "setup/en",
@@ -50,6 +50,10 @@ class CorruObserverWorld(World):
             enabled_mod_locations.append(modlocations_humoroushumors)
         if "vielk" in self.options.mods:
             enabled_mod_locations.append(modlocations_vielk)
+        if "mothlobotomy" in self.options.mods:
+            enabled_mod_locations.append(modlocations_mothlobotomy)
+        if "councilaltdance" in self.options.mods:
+            enabled_mod_locations.append(modlocations_councilaltdance)
         if "theirstreets" in self.options.mods:
             if self.options.scansanity:
                 enabled_mod_locations.append(modscansanity_locations_theirstreets)
@@ -81,6 +85,10 @@ class CorruObserverWorld(World):
             enabled_mod_items.append(moditems_humoroushumors)
         if "vielk" in self.options.mods:
             enabled_mod_items.append(moditems_vielk)
+        if "mothlobotomy" in self.options.mods:
+            enabled_mod_items.append(moditems_mothlobotomy)
+        if "councilaltdance" in self.options.mods:
+            enabled_mod_items.append(moditems_councilaltdance)
         if "theirstreets" in self.options.mods:
             if self.options.scansanity:
                 enabled_mod_items.append(modscansanity_items_theirstreets)
@@ -391,7 +399,8 @@ class CorruObserverWorld(World):
         if "kotzu" in self.options.mods:
             add_rule(self.multiworld.get_location("Memory Hole: Kotzu, Azzun Dialogue", self.player), lambda state: state.has("Memory Hole: Kotzu, Intro Complete", self.player))
             add_rule(self.multiworld.get_location("Memory Hole: Kotzu, Zuteki Dialogue", self.player), lambda state: state.has("Memory Hole: Kotzu, Intro Complete", self.player))
-
+        if "mothlobotomy" in self.options.mods:
+            add_rule(self.multiworld.get_location("Moth Lobotomy", self.player), lambda state: state.has("Menu: Completed Intro", self.player))
         
         
 
@@ -419,9 +428,3 @@ class CorruObserverWorld(World):
         # The options dataclass has a method to return a `Dict[str, Any]` of each option name provided and the relevant
         # option's value.
         return self.options.as_dict("scansanity", "mods")
-    
-    def generate_output(self, output_directory: str):
-        visualize_regions(self.multiworld.get_region("Menu", self.player), f"Player{self.player}.puml",
-                          show_entrance_names=True,
-                          regions_to_highlight=self.multiworld.get_all_state(self.player).reachable_regions[
-                              self.player])

@@ -503,6 +503,14 @@ moditems_vielk = {
     "Visited: /local/uncosm/vielk/": ItemData(54149041, ItemClassification.filler),
 }
 
+moditems_mothlobotomy = {
+    "Moth Lobotomy": ItemData(54149042, ItemClassification.filler),
+}
+
+moditems_councilaltdance = {
+    "Jokzi Ozo: Council's Alternate Dance": ItemData(54149043, ItemClassification.filler),
+}
+
 modscansanity_items_obski = {
     "Examined: o???-??b????-?s-???k?-i??: piece": ItemData(54159000, ItemClassification.filler),
 }
@@ -524,6 +532,8 @@ masteritem_table = {**item_table,
                         **moditems_kotzu,
                         **moditems_humoroushumors,
                         **moditems_vielk,
+                        **moditems_mothlobotomy,
+                        **moditems_councilaltdance,
                         **scansanity_item_table,
                         **modscansanity_items_obski,
                         **modscansanity_items_theirstreets}

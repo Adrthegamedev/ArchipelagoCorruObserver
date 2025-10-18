@@ -300,7 +300,7 @@ def getrules(world: "CorruObserverWorld"):
         "Dull Vessel: Referential Scar": lambda state: state.has("Jokzi Ozo: Joy Mask", world.player) and logic.canAccessIncoherentDullVessel(state, world.player),
         "City Streets: Referential Scar": lambda state: state.has("Jokzi Ozo: Joy Mask", world.player) and logic.canAccessCityStreetOffice(state, world.player),
         "Clemens Romanus: Referential Scar": lambda state: state.has("Jokzi Ozo: Joy Mask", world.player),
-        "Labs: Referential Scar": lambda state: (state.has("Jokzi Ozo: Joy Mask", world.player) and state.has("Labs: Wakizet Unity", world.player)),
+        "Labs: Referential Scar": lambda state: (state.has("Jokzi Ozo: Joy Mask", world.player) and state.can_reach_location("Labs: Wakizet Unity", world.player)),
         "City Street: Director Meeting": lambda state: logic.canAccessCityStreetOffice(state, world.player),
         "City Street: Cass Portal": lambda state: logic.canAccessCityStreetOffice(state, world.player),
         "Beneath: Drowning Falloff Relief": lambda state: state.can_reach_entrance("Drowning room edge fall", world.player) and state.has("Beneath: Drowning calmed", world.player),
@@ -608,8 +608,8 @@ def getscansanityrules(world: "CorruObserverWorld"):
         "Examined: ..__JOKZI_OZO__..: isabel": lambda state: state.has("City Streets: Isabel Unitied", world.player),
         "Examined: ..__JOKZI_OZO__..: effigy": lambda state: state.has("City Streets: Isabel Unitied", world.player),
         "Examined: ..__JOKZI_OZO__..: sun": lambda state: state.has("City Streets: Isabel Unitied", world.player),
-        "Examined: ..__JOKZI_OZO__..: gate::gate::?/::G:a;;T:E": lambda state: state.has("The Void: Fairy Unitied", world.player),
-        "Examined: ..__JOKZI_OZO__..: gate::gaGATE::te::?/..::G:a;;T:E": lambda state: state.has("The Void: Fairy Unitied", world.player),
+        "Examined: ..__JOKZI_OZO__..: gate::gate::?/::G:a;;T:E": lambda state: state.has("The Void: Fairy Unitied", world.player) or state.can_reach_entrance("Beneath -> Jokzi Ozo", world.player),
+        "Examined: ..__JOKZI_OZO__..: gate::gaGATE::te::?/..::G:a;;T:E": lambda state: state.has("The Void: Fairy Unitied", world.player) or state.can_reach_entrance("Beneath -> Jokzi Ozo", world.player),
         "Examined: ..__JOKZI_OZO__..: GELI": lambda state: state.has("::/FRAME/: Won Escape", world.player),
         "Examined: ..__THE_VOID__..: gate::bright moon": lambda state: state.has("Jokzi Ozo: Joy Mask", world.player),
         "Examined: ..__CITY_SURFACE__..: vehicle stream crossing mechanism": lambda state: state.has("Jokzi Ozo: Joy Mask", world.player) and logic.canAccessCityStreetIsabel(state, world.player),
@@ -694,6 +694,14 @@ modlocations_vielk = {
     "Visited: /local/uncosm/vielk/": LocationData(154149041, "Memory Hole"),
 }
 
+modlocations_mothlobotomy = {
+    "Moth Lobotomy": LocationData(154149042, "Menu"),
+}
+
+modlocations_councilaltdance = {
+    "Jokzi Ozo: Council's Alternate Dance": LocationData(154149043, "Jokzi Ozo"),
+}
+
 modscansanity_locations_obski = {
     "Examined: o???-??b????-?s-???k?-i??: piece": LocationData(154159000, "O-BSK-I"),
 }
@@ -715,6 +723,8 @@ masterlocation_table = {**location_table,
                         **modlocations_kotzu,
                         **modlocations_humoroushumors,
                         **modlocations_vielk,
+                        **modlocations_mothlobotomy,
+                        **modlocations_councilaltdance,
                         **scansanity_location_table,
                         **modscansanity_locations_obski,
                         **modscansanity_locations_theirstreets}

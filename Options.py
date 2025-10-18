@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 from Options import Toggle, Range, Choice, OptionSet, Visibility, PerGameCommonOptions
 
-modsList = ["obski", "surfacerunning", "quiz", "maze", "kotzu", "humoroushumors", "vielk", "theirstreets"]
+modsList = ["obski", "surfacerunning", "quiz", "maze", "kotzu", "humoroushumors", "vielk", "theirstreets", "mothlobotomy", "councilaltdance"]
 
 class Scansanity(Toggle):
     """Whether to use entity scans as valid options and checks or not."""
@@ -20,7 +20,9 @@ class Mods(OptionSet):
     kotzu
     humoroushumors
     vielk
-    theirstreets (only with scansanity)"""
+    theirstreets (only with scansanity)
+    mothlobotomy
+    councilaltdance"""
     visibility = Visibility.all & ~Visibility.simple_ui
     internal_name = "mods"
     display_name = "Mods"
