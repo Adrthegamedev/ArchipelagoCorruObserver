@@ -2840,6 +2840,370 @@ createEntity({
     ]
 })
 
+			env.dialogues["director"] = generateDialogueObject(`
+start
+    sourceless
+        director cassidy stands within the office
+            EXEC::ratween(env.bgm, 0.75);setCam({x: 3, y: 4, rotation: 0})
+
+    RESPONSES::self
+        talk later?<+>talklater
+            SHOWIF::"bt__d0_cass"
+        hello?<+>talknow
+            SHOWIF::[["bt__d0_cass", false], ["citystreet__director-meeting", true]]
+        recall meeting<+>meeting
+
+    RESPONSES::akizet
+        leave<+>END
+
+talknow
+    self
+        hello?
+        are you lucid?
+
+    akizet
+        director! i thought i might step in to say, ah...
+
+    sourceless
+        the director holds a communicator to the side of her face,
+        slightly perturbed by my approach, as if i am impeding something
+
+    cass
+        Akizet, I really can't talk right now.
+        Let's save it for the next project meeting, all right?
+
+    akizet
+        oh? apologies, director
+        yes, it is no pressing matter
+        fare well
+
+____SHOWONCE::
+    moth
+        not getting anything from it right now...
+____END
+
+    RESPONSES::akizet
+        set out<+>END    
+
+talklater
+    self
+        you said we'd talk later
+            EXEC::vnp({cass: "show far", hideStage: true})
+        when is that?
+
+    sourceless
+        the director holds a communicator to the side of her face,
+        expression twisting with impatience
+
+    cass
+        Oh, you're still here?
+        The team is waiting for you, Akizet.
+        
+    akizet
+        ah--?
+        oh, yes, right, apologies
+        fare well, director
+
+    sourceless
+        i turn to leave, the director speaking indistinctly to her device as i go
+
+    cass::whisper
+        What was I saying? Right...
+            EXEC::vnp({cass: "show", hideStage: true})
+        I'm not ready to involve you in this project, yet.
+        I've been trying to help push you in the right direction, but...
+        You really weren't supposed to hear about any of this so soon.
+        But we're not opposed. What I'm doing will get you what you want.
+
+    self
+        you're talking to me, right?
+        what do you mean by that?
+        you'll help me repair and gather information?
+        figure out what happened?
+
+    sourceless incoherent
+        h  her voice quiets as  i   near the do or
+
+    cass::whisper
+        Yeah, basically. I could help you a lot more than the idiot above me.
+        I don't need to tell you how stubborn and inefficient they are.
+        Even I'm constantly getting grilled for what we're doing out here.
+        If they knew what's going on <em>now</em>... It'd be one hell of a spectacle.
+        Don't misunderstand, though. I do trust you.
+        I'm very interested in what we'll be able to do, together.
+        Until I can get you in. Just keep this between us. Off the record.
+        If word gets out, nobody's going to be happy.
+
+    sourceless incoherent
+        whaa t a st t range c on onversation
+        
+    sourceless
+        her voice drops further, beyond my ability to hear
+            EXEC::vn.done()
+
+    moth
+        the incoherence here is all over the place
+        not bad enough to cause any issues, so,
+        i think some part of this conversation was real at some point?
+        the director is just baaarely avoiding causing any sort of memory failure
+        not just with how she's talking, but even with the weird connectors
+        all of it's so carefully made and hidden
+        blends right in with all the other damage
+        really easy to miss if i wasn't looking for it specifically
+
+    self
+        what do we do about this?
+
+    moth
+        well...
+        it's not just me, right? she's gotta be talking about funfriend
+        and with how she's acting, she must be hiding from him specifically
+        not that out of the ordinary given what we've seen i guess
+        you could tell funfriend, but idk what he'd be able to do
+        it's not like we really have a motive or any damage to point at here
+        maybe we just leave it? see what happens?
+        up to you
+    
+    self
+        ok
+
+    RESPONSES::akizet
+        set out<+>END
+
+meeting
+    sourceless
+        a bright cousin stands in the office
+            EXEC::setCam({x: 3, y: 4, rotation: 0});ratween(env.bgm, 0.75)
+        having heard our entry, she closes her folding communicator
+
+____SHOWIF::["citystreet__director-meeting", false]
+    sourceless incoherent
+        an  nd l ooks thr rough me
+            EXEC::vnp({cass: "show far", hideStage: true});ratween(env.bgm, 0.5)
+        with no   sm all  sur r prise
+            EXEC::vnp({cass: "open", hideStage: true})
+            WAIT::2000
+            THEN::vnp({cass: "open eye", hideStage: true})
+    
+    sys
+        WARNING::"incoherence detected"
+        WARNING::"cohesion error detected";"non-fatal";"continuing render"
+        
+    cass::open
+        Oh... That's not good.
+        How did you get in here?
+
+    moth
+        buddy this thing is going to cause a breakdown if you stay near it
+        incoherence just spiked like crazy
+        this is going to straight up crash 
+
+    gordon
+        Director Cassidy!
+    
+    sourceless incoherent
+        a nd st  ste p s    cl o ser
+        i ? ?   fee l   s ick
+
+    cass::open
+        I see...
+    
+    sourceless incoherent
+        clos es her  folding
+            EXEC::vnp({cass: "show open", hideStage: true});ratween(env.bgm, 0.75)
+            WAIT::2000
+            THEN::vnp({cass: "show", hideStage: true});
+
+    sourceless
+        what? did i lose focus?
+        it felt like something was missing just now
+        no--no, everything is fine
+
+    moth
+        ok, it's just... gone
+        acceptable levels right now
+        this is new
+____SHOWIF::"citystreet__director-meeting"
+
+    gordon
+        Director Cassidy!
+
+____END
+    cass
+        Gordon, Akizetesche!
+            EXEC::vn.done()
+        It's good to see you both, truly.
+
+    sourceless
+        she steps closer to shake gordon's hand, then my claw
+        a small smile i have come to understand as 'polite' upon her face
+        when i make an effort to mimic it, she smiles wider, quietly exhaling
+
+    akizet
+        thank you for coming all this way
+        please, just call me akizet
+        i understand you had to take a flight?
+
+    sourceless
+        before she speaks, she fetches a small, flat rectangle from a pocket
+        one of the 'cards' that they use to regulate access, here
+
+    cass
+        It's no trouble. 
+    
+    sourceless
+        her eyes shift in a puzzling way, her gaze lacking the warmth it just had
+        she turns the card over in her hand, smile held steady
+    
+    cass
+        It's the least I could do, really.
+        We all appreciate what you're doing here, Akizet.
+    
+    sourceless
+        as the director, i imagine she must be deeply familiar with receptor language by now
+        and so i try to suppress the subtle unease her tone inspires
+
+    cass
+        Just like you wanted, we have as few hands and eyes involved as possible.
+        It's me, a few officers for oversight, Gordon here, and some very good technicians.
+
+    akizet
+        delightful!
+
+    cass
+        The only thing is, there are still parts that don't add up.
+
+    sourceless
+        she punctuates her words with an idle waving of the card, held tightly between two fingers
+        from the corner of my vision, i see gordon shift, having grown tense
+    
+    cass
+        The secrecy from <em>your own people</em> is <em>very</em> strange.
+        Obviously, I wouldn't ever decline what you're offering.
+        Any country, corporation--hell, anyone off the street would <em>kill</em> for this thing.
+        This has the potential to be the biggest societal and technological leap in humanity's history.
+        It would be an incredible political bargaining chip, if we had to use it that way.
+        And yet, you only want help tracking the Call down,
+        Which, as you know, we're already doing - just without your technology.
+        And privacy? 
+        Not a word to any of the hundreds of other qou we're working with, not even your Council?
+        I need to know why you're doing this.
+
+    gordon
+        Director, as I explained in the proposal, recent discoverie--
+            WAIT::1000
+            AUTOADVANCE::
+        
+    cass
+        Yes, yes, yes, I know the circumstances.
+        But even the rest of her <em>team?</em>
+        It doesn't make sense.
+        What am I missing, Akizet?
+
+    sourceless
+        i feel her gaze bore into me, the smile flattened away over time
+        gordon said it was all approved already, why is she being so interrogative?
+        is this a trap? could the director have notified the council?
+        is she on some side of the terrible conflict? 
+        ah--did i forget to hide my unease? ÇO@vT)
+        i quickly loosen the curl of my receptors
+        there is no way out of this without telling at least a partial truth
+        
+    akizet
+        director, you are correct
+        i believe it may have been shelved for use in a potential negotiation
+        but there is little we could ever truly ask from you, our bright cousins
+        all qou i know wish only to help unite you with us in the stars
+        i understand this must seem idealistic, but it is true
+        we will have no shortage of the metals we require, with the gathering initiatives elsewhere
+        i have heard of contrivances made to dead, rich worlds, with nearly automated harvesting underway
+        i have read projections that we will be able to construct incredible minds,
+        cores the size of small planetoids, 
+        sure to solve every mystery that the void holds for us
+        and so, in time,
+        we will have everything we need, together. do you understand?
+        there is no desire great enough to ever justify holding this back from you
+        especially with how short your lives are, presently, just as ours were
+        so much brilliance will be lost if we wait
+        your politics, your technology, your... 'bargaining chips',
+        they are the tiniest parasites upon the tallest veilk
+        if there <em>is</em> something else...
+    
+    sourceless
+        a quiet rage boils in the back of my mind
+        i dearly wish to speak of the conflict
+        but as in θparasite, i must gather my bulbs
+        the director <em>must not know,</em> but without that knowledge,
+        the only conceivable reasons for my secrecy would be...
+        unspeakably grim prospects
+
+    akizet
+        ...then it is a grave error that the council did not inform us
+        if we cooperate, and use our combined technology to locate the call's origin,
+        and <em>then</em> i return to them and reveal all...
+        they will be unable to deny the value of our work together
+        even then, the fruit cannot be un-split - it will be in your hands
+        ...of course, there is a possibility i will be punished, even if my point is made clearly and publicly
+        and so, you see, i must not place my team at risk with this knowledge
+        <em>i</em> may be cast out as a deserter, but i will not allow my friends to suffer for my actions
+        and they would never place blame upon the bright cousins...
+        so it is only i who suffers in the event of failure
+    
+    sourceless
+        not a word i speak is false
+        but with all of my being, i hope those last words remain true
+        the director has hardly moved, her expression unchanged
+        briefly, i look to gordon, who is hearing all of this for the first time as well
+        he smiles, nodding once to reassure me, so i turn back to her
+        wordlessly, without warmth, she tips the card in her hand towards me in offering
+
+    cass
+        Hm.
+        That's very noble.
+        Well, everything's all set up.
+
+    sourceless
+        i... take the card
+        but, that is all?
+        this mundanity... does she believe me?
+        it is so difficult to read anything from her
+
+    cass
+        Anyone can go to the operations floor, but they can only access the sections relevant to their assignments.
+        We have other obesk working down there on various projects,
+        But the team has been briefed on your privacy concerns. It should be safe for you.
+        That card will let you into your section.
+    
+    sourceless
+        a polite smile returns to her face
+
+    akizet
+        excellent
+        director, thank you for this opportunity
+    
+    cass
+        Likewise.
+        I have another meeting shortly, so, please excuse me.
+        It's been a pleasure, Akizet.
+        Gordon, we'll talk later.
+
+    gordon
+        Yes ma'am.
+
+    sourceless
+        gordon meets my gaze, and we turn to leave
+
+    cass::whisper
+        Be careful on the way down.
+            SHOWONCE::
+        I hear the elevator's been acting a little strange.
+            SHOWONCE::
+
+    RESPONSES::akizet
+        fare well<+>END
+
+END::vn.done();ratween(env.bgm, 1);setCam()
+`)
 
         break
         
@@ -7821,5 +8185,26 @@ env.entities['referential scar'].exmExec = ()=>{
     }
 
 env.dialogues[`++scar`].start.responses[0].replies[0].showIf = ["joy#any"]
+
+async function gmss() {
+    let mss = {
+        state: 0.5,
+        status: "coherent",
+        code: 0
+    }
+
+    env.menu["system-menu"].querySelectorAll('.mindsci-status').forEach(el=>{
+        el.setAttribute('state', mss.state)
+        el.setAttribute('status', mss.status)
+        el.setAttribute('code', mss.code)
+        el.setAttribute('definition', `GAD::'${mss.status}'`)
+    })
+
+    let oldCode = env.mss ? env.mss.code : -99
+    env.mss = mss
+    env.effectiveNet = env.mss.code
+    
+    if((typeof env.fakenet != 'number' && mss.code != oldCode) || oldCode == -99) updateCode()
+}
 
 document.dispatchEvent(env.hooks.apcorru_loaded)
