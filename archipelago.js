@@ -2720,7 +2720,7 @@ env.stages['city_flowers'].exec = ()=>{
     }
 
 
-env.stages['city_banks_flip'].planAdjustment = ()=>{
+env.stages['city_banks_flip'].planAdjustment = (plan)=>{
         let newPlan = plan
         
         if(check("effigy_fawners") && check("LOC!!effigy_fawners")) newPlan = newPlan.replace("A", "░").replace("a", "░")
