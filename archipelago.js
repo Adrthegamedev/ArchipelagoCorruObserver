@@ -7244,12 +7244,6 @@ start
 END
 `);
 		};
-		env.dialogues["++moth"].start.responses[0].replies.push({
-			name: "i am tired of you",
-			showIf: [["mothotomy", 0]],
-			destination: "CHANGE::mothotomy"
-		})
-	};
         env.dialogues["++moth"].start.responses[0].replies.push({
 			name: "i am tired of you",
 			showIf: [["mothotomy", 1], ["LOC!!mothotomy", false]],
