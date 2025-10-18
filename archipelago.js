@@ -431,6 +431,7 @@ function packetToText(packet) {
                 flags["mothotomy"] = 1
                 keyfake = "mothotomy"
                 valuefake = 1
+				mothkill();
                 break
 
             case "recosm_state":
@@ -7225,7 +7226,6 @@ ____END
     }
 
     if (arrayOfStringURLsLoaded.includes("https://file.garden/aNd0eqDxKF1uOREs/lobotomize.js")){
-		if(!env.dialogues["mothotomy"]){
 			env.dialogues["mothotomy"] = generateDialogueObject(`
 start
     moth
@@ -7236,14 +7236,13 @@ start
 
     moth
         i dont think the spike is strong enough to d-
-            EXEC::setTimeout(()=>{play("stab");change("mothotomy",1);mothkill()},400)
+            EXEC::setTimeout(()=>{play("stab");change("mothotomy",1);},400)
             SILENT::
 
     RESPONSES::self
         cant undo this now<+>END
 END
 `);
-		};
         env.dialogues["++moth"].start.responses[0].replies.push({
 			name: "i am tired of you",
 			showIf: [["mothotomy", 1], ["LOC!!mothotomy", false]],
