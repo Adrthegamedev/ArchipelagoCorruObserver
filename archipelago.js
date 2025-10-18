@@ -427,9 +427,9 @@ function packetToText(packet) {
                 valuefake = "sniper_collected"
                 break
 
-            case "mothomy":
-                flags["mothomy"] = 1
-                keyfake = "mothomy"
+            case "mothotomy":
+                flags["mothotomy"] = 1
+                keyfake = "mothotomy"
                 valuefake = 1
                 break
 
@@ -1123,7 +1123,7 @@ var itemtable =   {
     54149039: "hazard",
     54149040: "cmb_unlocked",
     54149041: "visited_localuncosmvielk",
-    54149042: "mothomy",
+    54149042: "mothotomy",
     54149043: "default_danced",
 
     54150000: "..__LOCALHOST__..,funfriend",
@@ -1614,7 +1614,7 @@ var locationtable = {    "ocon_examined": 154140000,
     "hazard": 154149039,
     "cmb_unlocked": 154149040,
     "visited_localuncosmvielk": 154149041,
-    "mothomy": 154149042,
+    "mothotomy": 154149042,
     "default_danced": 154149043,
 
     "..__LOCALHOST__..,funfriend": 154150000,
@@ -7227,7 +7227,7 @@ ____END
     if (arrayOfStringURLsLoaded.includes("https://file.garden/aNd0eqDxKF1uOREs/lobotomize.js")){
         env.dialogues["++moth"].start.responses[0].replies.push({
 			name: "i am tired of you",
-			showIf: [["mothotomy", 1], ["LOC!!mothomy", false]],
+			showIf: [["mothotomy", 1], ["LOC!!mothotomy", false]],
 			destination: "CHANGE::mothotomy"
 		})
     }
