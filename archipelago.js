@@ -835,7 +835,7 @@ for (let step = 0; step < (secavikcountpacket - secavikcount); step++) {
                 if (changesmade) {
                     corruStatic.play()
                     corruStatic.fade(0, 0.5, 1000)
-                    readoutAdd({message: "SAVEFILE MODS INITIALISED::ALERT::RELOADING::...'", name:"archi"})
+					chatter({actor: 'archi', text: "SAVEFILE MODS INITIALISED::ALERT::RELOADING::...'", readout: true})
                     setTimeout(()=>{
                         location.replace('/')
                     }, 3000)
@@ -3739,7 +3739,7 @@ document.addEventListener('corru_resources_added', (ev)=>{
         
         
         case "/hub/":
-            if (arrayOfStringURLsLoaded.includes("/js/hub.js")){
+            if ((arrayOfStringURLsLoaded.includes("/js/hub.js")) || (arrayOfStringURLsLoaded.includes("https://adrthegamedev.github.io/ArchipelagoCorruObserver/archipelago.js") && (typeof env.dialogues.hubBuddyResponses != "undefined"))) {
             env.hub.firstVisitEnd = () => {
                 env.setTimeout(()=>{
                     // FIXUP::hub_introduced
@@ -4525,7 +4525,6 @@ ah1
     RESPONSES::self
         how do i get to the 'uncosm'<+>ah1uncosm
         what is the 'uncosm'<+>ah1whatuncosm
-        how do i use the proxy<+>ah1proxy
         ok<+>loop
             FAKEEND::(back)
 
@@ -4545,7 +4544,6 @@ ah1uncosm
     RESPONSES::self
         how do i get to the 'uncosm'<+>ah1uncosm
         what is the 'uncosm'<+>ah1whatuncosm
-        how do i use the proxy<+>ah1proxy
         ok<+>loop
             FAKEEND::(back)
 
@@ -4572,38 +4570,6 @@ ah1whatuncosm
     RESPONSES::self
         how do i get to the 'uncosm'<+>ah1uncosm
         what is the 'uncosm'<+>ah1whatuncosm
-        how do i use the proxy<+>ah1proxy
-        ok<+>loop
-            FAKEEND::(back)
-
-ah1proxy
-    self
-        how do i use your proxy
-
-    funfriend
-        INTERLOPER I HAVE NO IDEA HOW TO PUT THIS IN A WAY YOU UNDERSTAND
-        BUT BASICALLY YOU ¤Mqë5yÚ*ü7Ìq¾ÏÚz)Œ
-        ý±Âß£Ë$1Väƒü‹kõþwX=Ãyº‚0×6ÒÂ
-
-    sys
-        ATTENTION::'attempting thought reformation'
-        ANALYSIS::'proxy thoughtform follows primary mode of direction'
-        ANALYSIS::'usual controls are replaced with a disruption pulse'
-        ANALYSIS::'direct the proxy over marked targets and pulse to disrupt them'
-        ANALYSIS::'disruption will disperse incoherent thoughtforms'
-        ANALYSIS::'avoid incoherence as it will gradually destroy the proxy'
-        NOTICE::'assistance available';'if required';'enable <span style="NOTE::'presents alternatives to proxy controls';'intended to resolve hardware issues'">REDUCED INTENSITY</span> within system menu'
-
-    funfriend
-        IF IT SOUNDS COMPLEX, IT IS NOT
-        JUST GO TRY IT
-        I CAN MAKE MORE PROXIES
-        JUST IN CASE YOU MANAGE TO FUMBLE IT INTO THE ABYSS SOMEHOW
-
-    RESPONSES::self
-        how do i get to the 'uncosm'<+>ah1uncosm
-        what is the 'uncosm'<+>ah1whatuncosm
-        how do i use the proxy<+>ah1proxy
         ok<+>loop
             FAKEEND::(back)
 
@@ -5124,13 +5090,13 @@ createEntity({
 
         case "/local/ocean/embassy/":
             // FIXUP::collapse anti-sequencebreak measures
-            if (arrayOfStringURLsLoaded.includes("/js/embassy_precollapse.js")){
+            if ((arrayOfStringURLsLoaded.includes("/js/embassy_precollapse.js")) || (arrayOfStringURLsLoaded.includes("https://adrthegamedev.github.io/ArchipelagoCorruObserver/archipelago.js") && (typeof env.embassy.d2progress != "undefined"))) {
                 env.entities['recollection::collapse'].actions[0].showIf = ()=> (check('hub__funfriend-mothframe2', false) && check('collapseSave', false) && check('embassy__mothframe-end', false)) || check('LOC!!embassy__mothframe-end', false)
                 env.entities['recollection::collapse'].actions[4].showIf = ()=> check("ENV!!ep3") && check("hub__funfriend-mothframe2");
             }
 
             // FIXUP::anti-hub sequencebreak measures
-            if (arrayOfStringURLsLoaded.includes("/js/embassy_collapse.js")){
+            if ((arrayOfStringURLsLoaded.includes("/js/embassy_collapse.js")) || (arrayOfStringURLsLoaded.includes("https://adrthegamedev.github.io/ArchipelagoCorruObserver/archipelago.js") && (typeof env.embassy.music_bstrd != "undefined"))) {
 env.dialogues["mothframe"] = generateDialogueObject(` 
 start
     sys
@@ -5341,7 +5307,7 @@ start
         
         case "/local/ozo/":
             // FIXUP::council task
-            if (arrayOfStringURLsLoaded.includes("/js/jokziozo.js")){
+            if ((arrayOfStringURLsLoaded.includes("/js/jokziozo.js")) || (arrayOfStringURLsLoaded.includes("https://adrthegamedev.github.io/ArchipelagoCorruObserver/archipelago.js") && (typeof env.dialogues.councilResp != "undefined"))) {
                 env.dialogues.councilResp = generateDialogueObject(`
 RESPOBJ::
     RESPONSES::self
@@ -6602,7 +6568,7 @@ env.jokzi.runEvents = () => {
         break
         
         case "/local/ocean/embassy/golem/":
-            if (arrayOfStringURLsLoaded.includes("/js/embassy_golem.js")){
+            if ((arrayOfStringURLsLoaded.includes("/js/embassy_golem.js")) || (arrayOfStringURLsLoaded.includes("https://adrthegamedev.github.io/ArchipelagoCorruObserver/archipelago.js") && (typeof env.embassy.skips.m_bossclear != "undefined"))) {
 env.embassy.skips.m_bossclear = () => {
         toggleBgm(env.embassy.music_golems_cleared)
         env.embassy.music_unsafe_golems.rate(1)
@@ -6948,7 +6914,7 @@ createEntity({
         break
         
         case "/local/beneath/embassy/":
-            if (arrayOfStringURLsLoaded.includes("/js/beneath_embassy.js")){
+            if ((arrayOfStringURLsLoaded.includes("/js/beneath_embassy.js")) || (arrayOfStringURLsLoaded.includes("https://adrthegamedev.github.io/ArchipelagoCorruObserver/archipelago.js") && (typeof env.e3a2 != "undefined"))) {
     
 createEntity({
     name: 'daemon mimic',
@@ -7953,7 +7919,7 @@ function newCustomPageArchi({url, title, name, dialoguePrefix, remoteHTML}) {
     // REFRESH PAGE IF ITS EMPTY 4 SOME REASON
     document.addEventListener('corru_resources_added', (ev)=>{
         const arrayOfStringURLsLoaded = ev.detail.resList
-        if((location.pathname == `${url}`) && (typeof page.overridden == "undefined") && (arrayOfStringURLsLoaded.includes("https://adrfurret.neocities.org/corrumods/archipelago.js"))) {
+        if((location.pathname == `${url}`) && (typeof page.overridden == "undefined") && (arrayOfStringURLsLoaded.includes("https://adrthegamedev.github.io/ArchipelagoCorruObserver/archipelago.js"))) {
             body.classList.add('hard-cut') // needed 4 the static sound to not break
             moveTo(`${url}`)
             body.classList.remove('hard-cut')
