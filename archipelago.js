@@ -701,7 +701,7 @@ function packetToText(packet) {
                 break
             }
         }
-        if(typeof flags.detectedEntities[itemarr[0]].entities[itemarr[1]] == "undefined") {
+        if(typeof flags.detectedEntities[itemarr[0]].entities[itemarr[1]] != "object") {
             flags.detectedEntities[itemarr[0]].entities[itemarr[1]] = {
             name: itemarr[1],
             image: "https://adrfurret.neocities.org/corrumods/img/mui/mindspikelogoarchipelago-license-Krista%20Corkos%20and%20Christopher%20Wilson-cc-nc-4.0.gif", 
@@ -1059,6 +1059,7 @@ var itemtable =   {
     54140164: "eo_w_geli",
     54140165: "car_ozo",
     54140166: "unity_rot",
+    54140167: "seenFairyWander",
     
     54140900: "visited_localuncosmwhere",
     54140901: "visited_localuncosmcavik",
@@ -1549,6 +1550,7 @@ var locationtable = {    "ocon_examined": 154140000,
     "eo_w_geli": 154140168,
     "car_ozo": 154140169,
     "unity_rot": 154140170,
+    "seenFairyWander": 154140171,
     
     "visited_localuncosmwhere": 154140900,
     "visited_localuncosmcavik": 154140901,

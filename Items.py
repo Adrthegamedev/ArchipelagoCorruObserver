@@ -189,6 +189,7 @@ item_table = {
     "Jokzi Ozo: Event: Wakizet - geli": ItemData(54140164, ItemClassification.filler),
     "Car: Enter Jokzi Ozo": ItemData(54140165, ItemClassification.filler),
     "Rotwatcher Unity": ItemData(54140166, ItemClassification.filler),
+    "Seen Fairy Wander": ItemData(54140167, ItemClassification.filler),
     # MEMORY HOLE
     "Visited: /local/uncosm/where/": ItemData(54140900, ItemClassification.filler),
     "Visited: /local/uncosm/cavik/": ItemData(54140901, ItemClassification.filler),

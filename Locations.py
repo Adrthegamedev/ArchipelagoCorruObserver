@@ -195,6 +195,7 @@ location_table = {
     "Jokzi Ozo: Event: Wakizet - geli": LocationData(154140168, "Jokzi Ozo"),
     "Car: Enter Jokzi Ozo": LocationData(154140169, "Car"),
     "Rotwatcher Unity": LocationData(154140170, "Menu"), # many places
+    "Seen Fairy Wander": LocationData(154140171, "Menu"), # many places
     # MEMORY HOLE
     "Visited: /local/uncosm/where/": LocationData(154140900, "Memory Hole"),
     "Visited: /local/uncosm/cavik/": LocationData(154140901, "Memory Hole"),
@@ -330,6 +331,7 @@ def getrules(world: "CorruObserverWorld"):
         "Jokzi Ozo: Event: Wakizet - fairy": lambda state: state.has("Labs: Wakizet Unity", world.player) and state.has("Jokzi Ozo: Wakizet Better Times Dialogue", world.player) and state.has("The Void: Fairy Unitied", world.player),
         "Jokzi Ozo: Event: Wakizet - geli": lambda state: state.has("Labs: Wakizet Unity", world.player) and state.has("Jokzi Ozo: Wakizet Better Times Dialogue", world.player) and state.has("::/FRAME/: Won Escape", world.player),
         "Rotwatcher Unity": lambda state: state.has("Jokzi Ozo: Joy Mask", world.player) and state.has("Menu: EP4 Intro", world.player) and state.has("Jokzi Ozo: Unity Mask", world.player) and (state.has("City Streets: Rotwatcher Intro", world.player) and (state.can_reach_region("Uncosm", world.player) or (state.can_reach_region("First Chat", world.player) and logic.canAccessIncoherentInterview(state, world.player)) and (state.can_reach_region("Labs", world.player) and state.has("Jokzi Ozo: Freedom Mask", world.player) and state.has("Labs: Wakizet Unity", world.player) and state.can_reach_entrance("!!__REFERENTIAL SCAR__!! (to Labs)", world.player)))),
+        "Seen Fairy Wander": lambda state: state.has("Jokzi Ozo: Hunger Mask", world.player) and (state.can_reach_region("Their City", world.player) or state.can_reach_region("The Void", world.player) or state.can_reach_region("Uncosm", world.player) or (state.can_reach_region("First Chat", world.player) and logic.canAccessIncoherentInterview(state, world.player)) and (state.can_reach_region("Labs", world.player) and state.has("Jokzi Ozo: Freedom Mask", world.player) and state.has("Labs: Wakizet Unity", world.player) and state.can_reach_entrance("!!__REFERENTIAL SCAR__!! (to Labs)", world.player))),
     }
 
 scansanity_location_table = {
