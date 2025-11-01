@@ -6504,6 +6504,7 @@ createEntity({
                     vfx({type: 'flash', state: false})
                     vfx({type: 'beacon', state: false})
                     cutscene(false)
+                    change('dog', true)
                     change("unity_dog", true)
                     document.querySelectorAll('#realgrid .isopod').forEach(el=>el.remove())
 
