@@ -10,6 +10,8 @@ import typing
 
 
 class CorruObserverWeb(WebWorld):
+    theme = 'partyTime'
+    bug_report_page = "https://github.com/Adrthegamedev/ArchipelagoCorruObserver/issues"
     setup_en = Tutorial(
         "Multiworld Setup Guide",
         "A guide for setting up corru.observer to be played in Archipelago.",
@@ -428,3 +430,4 @@ class CorruObserverWorld(World):
         # The options dataclass has a method to return a `Dict[str, Any]` of each option name provided and the relevant
         # option's value.
         return self.options.as_dict("scansanity", "mods")
+
