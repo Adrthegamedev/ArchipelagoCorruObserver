@@ -309,7 +309,7 @@ class CorruObserverWorld(World):
         golems_region.add_exits({"::/FRAME/": "Door Gap"}, {"::/FRAME/": lambda state: state.has("Jokzi Ozo: Hunger Mask", self.player)})
         frame_region.add_exits({"Jokzi Ozo": "Escape"}, {"Jokzi Ozo": lambda state: state.has("::/FRAME/: Won Escape", self.player)})
         ozo_region.add_exits({"::/FRAME/": "!!__WHEEL__!! (Replay)"}, {"::/FRAME/": lambda state: state.has("::/FRAME/: Won Escape", self.player)})
-        ozo_region.add_exits({"The Depths": "!!__gate::L‹ïAöIÁå__!!"}, {"The Depths": lambda state: (state.can_reach_entrance("Beneath -> Jokzi Ozo", self.player) or state.can_reach_entrance("Escape", self.player) or state.can_reach_entrance("Parasite Plane Ozo warp", self.player) or state.can_reach_entrance("Car -> Jokzi Ozo", self.player) or state.can_reach_entrance("!!__REFERENTIAL SCAR__!! (To Jokzi Ozo)", self.player))})
+        ozo_region.add_exits({"The Depths": "!!__gate::L‹ïAöIÁå__!!"}, {"The Depths": lambda state: (state.can_reach_entrance("Beneath -> Jokzi Ozo", self.player) or state.can_reach_entrance("Escape", self.player) or state.can_reach_entrance("Parasite Plane Ozo warp", self.player) or state.can_reach_entrance("Car -> Jokzi Ozo", self.player) or state.can_reach_entrance("!!__REFERENTIAL SCAR__!! (to Jokzi Ozo)", self.player))})
         self.multiworld.register_indirect_condition(self.multiworld.get_region("Beneath", self.player), self.multiworld.get_entrance("!!__gate::L‹ïAöIÁå__!!", self.player))
         self.multiworld.register_indirect_condition(self.multiworld.get_region("Parasite Plane", self.player), self.multiworld.get_entrance("!!__gate::L‹ïAöIÁå__!!", self.player))
         self.multiworld.register_indirect_condition(self.multiworld.get_region("::/FRAME/", self.player), self.multiworld.get_entrance("!!__gate::L‹ïAöIÁå__!!", self.player))
@@ -430,4 +430,5 @@ class CorruObserverWorld(World):
         # The options dataclass has a method to return a `Dict[str, Any]` of each option name provided and the relevant
         # option's value.
         return self.options.as_dict("scansanity", "mods")
+
 
