@@ -7961,7 +7961,7 @@ newCustomPageArchi({
     title: "my beautiful world",
     name: "my-beautiful-world",
     dialoguePrefix: "recosm",
-    remoteHTML: "https://file.garden/XfgsWwFNIyd3vjoq/pages/recosmoverride-rev2.html",
+    remoteHTML: "https://file.garden/XfgsWwFNIyd3vjoq/pages/recosmoverride-rev3.html",
 })
 
 
