@@ -14,4 +14,4 @@
 
 2. Before doing anything, move your mouse to the top-left corner and click on the sys menu.
 
-3. Under "Mindspike Data Management" -> "Advanced Operations" -> "Modification URL List", input `https://adrthegamedev.github.io/ArchipelagoCorruObserver/archipelago.js`. Other mods linked to the world will be automatically initialised for you.
+3. Under "Mindspike Data Management" -> "Advanced Operations" -> "Modification URL List", input `https://adrthegamedev.github.io/ArchipelagoCorruObserver/archipelago.js`. Then, input your multiworld connection information into the "Archipelago Connection settings" tab that appears. Other mods linked to the world will be automatically initialised for you.
