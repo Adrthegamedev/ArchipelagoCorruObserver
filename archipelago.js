@@ -5310,6 +5310,8 @@ start
         case "/local/ozo/":
             // FIXUP::council task
             if ((arrayOfStringURLsLoaded.includes("/js/jokziozo.js")) || (arrayOfStringURLsLoaded.includes("https://adrthegamedev.github.io/ArchipelagoCorruObserver/archipelago.js") && (typeof env.dialogues.councilResp != "undefined"))) {
+				change("freedomtut", "DELETE")
+				
                 env.dialogues.councilResp = generateDialogueObject(`
 RESPOBJ::
     RESPONSES::self
