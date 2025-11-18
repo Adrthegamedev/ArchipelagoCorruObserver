@@ -3742,9 +3742,6 @@ document.addEventListener('corru_resources_added', (ev)=>{
         
         case "/hub/":
             if ((arrayOfStringURLsLoaded.includes("/js/hub.js")) || (arrayOfStringURLsLoaded.includes("https://adrthegamedev.github.io/ArchipelagoCorruObserver/archipelago.js") && (typeof env.dialogues.hubBuddyResponses != "undefined"))) {
-            if(check('hub_introduced') && !check('LOC!!hub_introduced')) {
-                startDialogue('firstvisit')
-            }
             env.hub.firstVisitEnd = () => {
                 env.setTimeout(()=>{
                     // FIXUP::hub_introduced
@@ -7610,6 +7607,12 @@ document.addEventListener('corru_entered', (ev)=>{
                         document.querySelector('#connection-overlay').classList.remove('show')
                         content.classList.remove('ep0-epi')
                     }
+        break
+
+        case "/hub/":
+            if(check('hub_introduced') && !check('LOC!!hub_introduced')) {
+                startDialogue('firstvisit')
+            }
         break
         
         case "/local/depths/":
