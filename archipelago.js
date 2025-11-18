@@ -6915,6 +6915,20 @@ createEntity({
 })
             }
         break
+    
+        case "/local/embassy/groundsmindry/":
+            if ((arrayOfStringURLsLoaded.includes("/js/embassy_stages_groundsmindry.js")) || (arrayOfStringURLsLoaded.includes("https://adrthegamedev.github.io/ArchipelagoCorruObserver/archipelago.js") && (typeof env.stages['out_early'] != "undefined"))) {
+                env.stages['grm_lesser'].planAdjustment = (plan)=>{
+                    if(check("mask-freedom") && !(check("groundstrd") && check("LOC!!groundstrd"))) return plan
+                    else return plan.replaceAll("!", ".").replaceAll("?", ".")
+                }
+                env.stages['out_early'].planAdjustment = (plan)=>{
+                    if(check("groundstrd") && check("LOC!!groundstrd")) return plan.replaceAll("!", ".").replaceAll("?", ".").replaceAll("B", ".")
+                    
+                    return plan
+                }
+            }
+        break
         
         case "/local/beneath/embassy/":
             if ((arrayOfStringURLsLoaded.includes("/js/beneath_embassy.js")) || (arrayOfStringURLsLoaded.includes("https://adrthegamedev.github.io/ArchipelagoCorruObserver/archipelago.js") && (typeof env.e3a2 != "undefined"))) {
