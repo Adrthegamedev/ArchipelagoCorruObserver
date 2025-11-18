@@ -6916,7 +6916,7 @@ createEntity({
             }
         break
     
-        case "/local/embassy/groundsmindry/":
+        case "/local/ocean/embassy/groundsmindry/":
             if ((arrayOfStringURLsLoaded.includes("/js/embassy_stages_groundsmindry.js")) || (arrayOfStringURLsLoaded.includes("https://adrthegamedev.github.io/ArchipelagoCorruObserver/archipelago.js") && (typeof env.stages['out_early'] != "undefined"))) {
                 env.stages['grm_lesser'].planAdjustment = (plan)=>{
                     if(check("mask-freedom") && !(check("groundstrd") && check("LOC!!groundstrd"))) return plan
