@@ -2096,8 +2096,8 @@ document.addEventListener('corru_loaded', ()=>{
 document.addEventListener('corru_leaving', ()=>{
     switch(page.path) {
         case "/hello/":
-            env.hello.hubmusic.fade(env.hello.hubmusic.volume(), 0, 1000)
-            env.hello.bgm404.fade(env.hello.bgm404.volume(), 0, 1000)
+            if(typeof env.hello.hubmusic != "undefined"){env.hello.hubmusic.fade(env.hello.hubmusic.volume(), 0, 1000)}
+            if(typeof env.hello.bgm404 != "undefined"){env.hello.bgm404.fade(env.hello.bgm404.volume(), 0, 1000)}
         break
     }
 });
