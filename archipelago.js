@@ -8083,6 +8083,9 @@ env.entities['membrane incision'] = {
                 },
             ]
         })
+
+        env.entities['rotwatcher'].actions[0].showIf = () => !(check("citystreet__rotmeet") && check("LOC!!citystreet__rotmeet"))
+
     } catch(e) {console.error(e); printError(e, true)}
 
 env.dialogues['menu_hub'].start.responses[0].replies[0].showIf = ()=> check("hello_sentry_idiot");
