@@ -3742,6 +3742,9 @@ document.addEventListener('corru_resources_added', (ev)=>{
         
         case "/hub/":
             if ((arrayOfStringURLsLoaded.includes("/js/hub.js")) || (arrayOfStringURLsLoaded.includes("https://adrthegamedev.github.io/ArchipelagoCorruObserver/archipelago.js") && (typeof env.dialogues.hubBuddyResponses != "undefined"))) {
+            if(check('hub_introduced') && !check('LOC!!hub_introduced')) {
+                startDialogue('firstvisit')
+            }
             env.hub.firstVisitEnd = () => {
                 env.setTimeout(()=>{
                     // FIXUP::hub_introduced
