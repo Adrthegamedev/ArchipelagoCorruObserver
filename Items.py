@@ -24,8 +24,8 @@ item_table = {
     "Hello: Sentry called you idiot": ItemData(54140007, ItemClassification.progression),
     "Visited: /hub/": ItemData(54140008, ItemClassification.filler),
     "Hub: Funfriend introduced": ItemData(54140009, ItemClassification.filler),
-    "Visited: /local/city/": ItemData(54140010, ItemClassification.filler),
-    "Visited: /local/city/street/": ItemData(54140011, ItemClassification.filler),
+    "Visited: /local/city/": ItemData(54140010, ItemClassification.progression),
+    "Visited: /local/city/street/": ItemData(54140011, ItemClassification.progression),
     "City Streets: Tried Room High Up chat": ItemData(54140012, ItemClassification.filler),
     "City Streets: Cashier hello": ItemData(54140013, ItemClassification.progression),
     "City Streets: Orange Coffee": ItemData(54140014, ItemClassification.progression),
@@ -34,13 +34,13 @@ item_table = {
     "Visited: /local/dullvessel/": ItemData(54140017, ItemClassification.filler),
     "Visited: /local/ocean/": ItemData(54140018, ItemClassification.progression),
     "Visited: /local/ocean/ship/": ItemData(54140019, ItemClassification.filler),
-    "Visited: /local/ocean/ship/interview/": ItemData(54140020, ItemClassification.filler),
+    "Visited: /local/ocean/ship/interview/": ItemData(54140020, ItemClassification.progression),
     "First Chat: Be Honest": ItemData(54140021, ItemClassification.progression),
     #"dullvessel_dive": ItemData(54140022, ItemClassification.progression),
     "Visited: /local/depths/": ItemData(54140023, ItemClassification.filler),
     "Depths: Ejected from cyst": ItemData(54140024, ItemClassification.filler),
     "Progressive EP0 Epilogue": ItemData(54140025, ItemClassification.progression, 3),
-    "Visited: /local/uncosm/": ItemData(54140026, ItemClassification.filler),
+    "Visited: /local/uncosm/": ItemData(54140026, ItemClassification.progression),
     "Visited: /local/uncosm/no/": ItemData(54140027, ItemClassification.filler),
     # EP1
     "Menu: EP1 Shown Materials": ItemData(54140028, ItemClassification.progression), # choice agnostic; client linked to Progressive EP0 Epilogue for the item showing
@@ -92,7 +92,7 @@ item_table = {
     "First Chat (Incoherent): Seen Ghost": ItemData(54140071, ItemClassification.filler),
     "First Chat (Incoherent): Interview Lady Unitied": ItemData(54140072, ItemClassification.progression), # Interviewer unitied
     "Beneath Depths: Velzie Encounter": ItemData(54140073, ItemClassification.filler), # it's not on beneath_depths because that only gets set if you unity it
-    "Visited: /local/ozo/": ItemData(54140074, ItemClassification.filler),
+    "Visited: /local/ozo/": ItemData(54140074, ItemClassification.progression),
     "Jokzi Ozo: Unity Mask": ItemData(54140075, ItemClassification.progression), # Unity mask
     "Jokzi Ozo: Hunger Mask": ItemData(54140076, ItemClassification.progression), # Hunger mask
     "The Void: Fairy Unitied": ItemData(54140077, ItemClassification.progression), # Fairy unitied
@@ -155,7 +155,7 @@ item_table = {
     "Beneath: Drowning Falloff Relief": ItemData(54140130, ItemClassification.filler),
     "Visited: /local/beneath/car/": ItemData(54140131, ItemClassification.filler),
     "Car: Intro": ItemData(54140132, ItemClassification.progression),
-    "Visited: /local/uncosm/pit/": ItemData(54140133, ItemClassification.filler),
+    "Visited: /local/uncosm/pit/": ItemData(54140133, ItemClassification.progression),
     "Labs: Landmine spotted": ItemData(54140134, ItemClassification.filler),
     "Labs: Spida spotted": ItemData(54140135, ItemClassification.filler),
     "Labs: The Looker spotted": ItemData(54140136, ItemClassification.filler),
