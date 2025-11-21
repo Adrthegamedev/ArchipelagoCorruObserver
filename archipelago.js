@@ -7614,6 +7614,10 @@ document.addEventListener('corru_entered', (ev)=>{
                 startDialogue('firstvisit')
             }
         break
+
+        case "/local/ozo/":
+            change("PAGE!!usedCache", "DELETE")
+        break
         
         case "/local/depths/":
                         if(check('ep0_epilogue') && (!check('LOC!!ep0_epilogue,awaiting') || !check('LOC!!ep0_end'))) document.querySelector('.depthbox').classList.remove('incoherent')
