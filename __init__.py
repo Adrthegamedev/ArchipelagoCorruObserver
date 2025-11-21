@@ -227,9 +227,9 @@ class CorruObserverWorld(World):
         waters_region.add_exits({"The Embassy": "!!__THE EMBASSY__!!"}, {"The Embassy": lambda state: state.has("Hub: Funfriend EP1 Fed dialogue", self.player)})
         theirvessel_region.add_exits({"Clemens Romanus": "!!__CLEMENS ROMANUS__!!"}, {"Clemens Romanus": lambda state: (state.has("Progressive EP0 Epilogue", self.player) and state.has("Menu: EP1 Shown Materials", self.player))})
         dullvessel_region.add_exits({"Parasite Plane": "!!__PARASITE PLANE__!! (Dull Vessel)"}, {"Parasite Plane": lambda state: ((state.has("Menu: EP1 Fed", self.player)) and state.has("Jokzi Ozo: Hunger Mask", self.player))})
-        waters_region.add_exits({"Cache": "!!__MEMBRANE INCISION__!! (Their Waters)"}, {"Cache": lambda state: state.has("Menu: EP1 Fed", self.player)})
-        void_region.add_exits({"Cache": "!!__MEMBRANE INCISION__!! (Void)"}, {"Cache": lambda state: state.has("Menu: EP1 Fed", self.player)})
-        city_region.add_exits({"Cache": "!!__MEMBRANE INCISION__!! (City)"}, {"Cache": lambda state: state.has("Menu: EP1 Fed", self.player)})
+        waters_region.add_exits({"Cache": "!!__MEMBRANE INCISION__!! (Their Waters)"}, {"Cache": lambda state: state.has("Menu: EP1 Fed", self.player) and state.has("Visited: /local/ocean/", self.player)})
+        void_region.add_exits({"Cache": "!!__MEMBRANE INCISION__!! (Void)"}, {"Cache": lambda state: state.has("Menu: EP1 Fed", self.player) and state.has("Visited: /local/orbit/", self.player)})
+        city_region.add_exits({"Cache": "!!__MEMBRANE INCISION__!! (City)"}, {"Cache": lambda state: state.has("Menu: EP1 Fed", self.player) and state.has("Visited: /local/city/", self.player)})
         hub_region.add_exits({"Cache": "!!__MEMBRANE INCISION__!! (Hub)"}, {"Cache": lambda state: state.has("Hub: Funfriend Ozo Gate dialogue", self.player)})
         cache_region.connect(theirvessel_region)
         cache_region.add_exits({"Jokzi Ozo": "Ò½º"}, {"Jokzi Ozo": lambda state: state.has("Menu: EP2 Intro", self.player)})
@@ -430,5 +430,6 @@ class CorruObserverWorld(World):
         # The options dataclass has a method to return a `Dict[str, Any]` of each option name provided and the relevant
         # option's value.
         return self.options.as_dict("scansanity", "mods")
+
 
 
