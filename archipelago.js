@@ -8110,7 +8110,9 @@ env.entities['membrane incision'] = {
             ]
         })
 
-        env.entities['rotwatcher'].actions[0].showIf = () => !(check("citystreet__rotmeet") && check("LOC!!citystreet__rotmeet"))
+		if (typeof env.entities['rotwatcher'] == "undefined"){
+        	env.entities['rotwatcher'].actions[0].showIf = () => !(check("citystreet__rotmeet") && check("LOC!!citystreet__rotmeet"))
+		}
 
     } catch(e) {console.error(e); printError(e, true)}
 
