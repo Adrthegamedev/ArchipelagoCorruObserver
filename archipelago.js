@@ -203,23 +203,23 @@ function connectAP() {
         if (element.type === "player_id" && !isNaN(id)) {
             var player = client.players.findPlayer(Number(id)).name
             if(Number(selfSlot) == Number(id)){
-                return "<span style='color:var(--obesk-color);'>" + player + "</span>";
+                return "<span style='color:var(--obesk-color);'>" + sanitize(player) + "</span>";
             } else {
-                return "<span style='color:var(--neutral-color);'>" + player + "</span>";
+                return "<span style='color:var(--neutral-color);'>" + sanitize(player) + "</span>";
             }
         } else if (element.type === "item_id" && !isNaN(id)) {
             var item = client.package.lookupItemName(client.players.findPlayer(Number(playerId)).game, Number(id))
             if (element.flags !== undefined) {
                 if (element.flags & 1) {
-                    return "<span style='color:#0066ff;'>" + item + "</span>";
+                    return "<span style='color:#0066ff;'>" + sanitize(item) + "</span>";
                 }
                 if (element.flags & 2) {
-                    return "<span style='color:var(--neutral-color);'>" + item + "</span>";
+                    return "<span style='color:var(--obesk-color);'>" + sanitize(item) + "</span>";
                 }
                 if (element.flags & 4) {
-                    return "<span style='color:var(--bastard-color);'>" + item + "</span>";
+                    return "<span style='color:var(--bastard-color);'>" + sanitize(item) + "</span>";
                 }
-                return item
+                return "<span style='color:var(--friend-color);'>" + sanitize(item) + "</span>"
             }
         } else if (element.type === "location_id" && !isNaN(id)) {
             var location = client.package.lookupLocationName(client.players.findPlayer(Number(playerId)).game, Number(id))
@@ -283,7 +283,7 @@ function connectAP() {
             }
             return sanitize(element.text);
         } else {
-            return element;
+            return sanitize(element);
         }
     }
 
