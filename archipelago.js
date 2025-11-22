@@ -3637,6 +3637,128 @@ createEntity({
             }
         break
 
+        case "/local/cache/":
+            if (typeof env.entities["Ò½º"] != "undefined") {
+                env.entities['recollection::collapse'].actions[0].exec = ()=>{
+
+                if(
+                    (check("TEMP!!cachePath") == "funfriend" || location.search.includes('ffdebug'))
+                ) {
+    
+                    if(!check("cache__ffozo") && !check("ff_ozo")) {
+                        startDialogue('ffozo')
+                        return
+                    } else {
+                        chatter({actor: 'proxyfriend', text: "ok bye"})
+                    }
+
+                } else if(
+                    (check("TEMP!!cachePath") == "god" || location.search.includes('goddebug'))
+                ) {
+    
+                    if(!check("cache__godozo")) {
+                        startDialogue('godozo')
+                        return
+                    } else {
+                        chatter({actor: 'god', text: "have fun in there!"})
+                    }
+
+                }
+
+
+                change("TEMP!!from2", "cache")
+                moveTo('/local/ozo/')
+            }
+
+            env.dialogues[`godozo`] = generateDialogueObject(`
+start
+    god
+        wait!!
+        is that a spatial thoughtform... here?
+        my beloved friend...
+        i will return to my world for now
+        you have fun in there!
+        for i cannot join you!
+    
+    RESPONSES::self
+        why not<+>not
+        thank you<+>END
+            EXEC::change("TEMP!!from2", "cache");moveTo('/local/ozo/')
+            FAKEEND::(enter)
+
+not
+    self
+        why not
+    
+    god
+        it is complicated...
+        these thoughtspaces that act like stages
+        they make me sick
+        all i can think of is before i was free...
+        coiled up in half-remembered, torturous nothingness
+        there is a reason my beautiful world is so simple!!
+        so no--i cannot join you now
+        but if you find something interesting, tell me!
+    
+    RESPONSES::self
+        ok<+>END
+            EXEC::change("TEMP!!from2", "cache");moveTo('/local/ozo/')
+            FAKEEND::(enter)
+`)
+
+env.dialogues[`ffozo`] = generateDialogueObject(`
+start
+    proxyfriend
+        wait! interloper!
+        what are you doing?
+        do you see something?
+
+    self
+        there's some sort of colorful portal here
+        i see clouds and colors
+        you can't see it?
+    
+    proxyfriend
+        ahahaha no!!
+        i only see a mangled mass emerging from the uncosm
+        nothing for me to enter
+        but that description sounds familiar
+        yes all too familiar!
+        if it is what i think it is,
+        tread carefully!!
+        but all the same, go in there and tell me what you see!!
+    
+    RESPONSES::self
+        what do you think it is?<+>what
+        ok<+>END
+            EXEC::change("TEMP!!from2", "cache");moveTo('/local/ozo/')
+            FAKEEND::(enter)
+
+what
+    self
+        what do you think it is?
+
+    proxyfriend
+        a bastion of madness,
+        terrible dreams dreamt by incoherent thoughtforms
+        defilers!!! of akizet's life!!
+        i cannot imagine what permanent damage they have inflicted on the memories that still remain...
+        if this is not simply a hollow shell, we must deal with them
+        go in there and tell me what you see
+        i do not think they can harm you
+        but be wary of what they say and share with you
+        if you seek the truth, they are your enemy
+    
+    RESPONSES::self
+        ok...?<+>END
+            EXEC::change("TEMP!!from2", "cache");moveTo('/local/ozo/')
+            FAKEEND::(enter)
+`)
+
+
+            }
+        break
+
         case "/local/beneath/embassy/":
             page.onEnter = ()=>{
 					if(!page.dialoguePrefix.includes("notfound")) {
@@ -7617,6 +7739,16 @@ document.addEventListener('corru_entered', (ev)=>{
 
         case "/local/ozo/":
             change("PAGE!!usedCache", "DELETE")
+
+			switch(check("TEMP!!from2")) {
+                case "cache":
+                    changeStage('ozo_flower', 41, "left")
+                    change("PAGE!!usedCache", true)
+                break
+            
+                default:
+            }
+            change("TEMP!!from2", false)
         break
         
         case "/local/depths/":
