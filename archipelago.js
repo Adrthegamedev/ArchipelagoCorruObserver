@@ -8095,7 +8095,7 @@ newCustomPageArchi({
     title: "..__FIRST_CHAT__..",
     name: "first-chat",
     dialoguePrefix: "interview1",
-    remoteHTML: "https://file.garden/XfgsWwFNIyd3vjoq/pages/interviewoverride-rev5.html",
+    remoteHTML: "https://file.garden/XfgsWwFNIyd3vjoq/pages/interviewoverride-rev6.html",
 })
 
 newCustomPageArchi({
