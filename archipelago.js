@@ -7742,7 +7742,7 @@ document.addEventListener('corru_entered', (ev)=>{
 
 			switch(check("TEMP!!from2")) {
                 case "cache":
-                    changeStage('ozo_flower', 41, "left")
+                    changeStage('ozo_entrance')
                     change("PAGE!!usedCache", true)
                 break
             
