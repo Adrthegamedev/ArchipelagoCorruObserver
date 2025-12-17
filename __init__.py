@@ -30,74 +30,6 @@ class CorruObserverWorld(World):
     item_name_to_id = {name: data.code for name, data in masteritem_table.items()}
     location_name_to_id = {name: data.id for name, data in masterlocation_table.items()}
 
-    def generate_early(self) -> None:
-        enabled_mod_locations = []
-        if self.options.scansanity:
-            enabled_mod_locations.append(scansanity_location_table)
-        if "obski" in self.options.mods:
-            enabled_mod_locations.append(modlocations_obski)
-            if self.options.scansanity:
-                enabled_mod_locations.append(modscansanity_locations_obski)
-        if "surfacerunning" in self.options.mods:
-            enabled_mod_locations.append(modlocations_surfacerunning)
-        if "quiz" in self.options.mods:
-            enabled_mod_locations.append(modlocations_quiz)
-        if "maze" in self.options.mods:
-            enabled_mod_locations.append(modlocations_maze)
-        #if "dialoguetelephone" in self.options.mods:
-        #    enabled_mod_locations.append(modlocations_dialoguetelephone)
-        if "kotzu" in self.options.mods:
-            enabled_mod_locations.append(modlocations_kotzu)
-        if "humoroushumors" in self.options.mods:
-            enabled_mod_locations.append(modlocations_humoroushumors)
-        if "vielk" in self.options.mods:
-            enabled_mod_locations.append(modlocations_vielk)
-        if "mothlobotomy" in self.options.mods:
-            enabled_mod_locations.append(modlocations_mothlobotomy)
-        if "councilaltdance" in self.options.mods:
-            enabled_mod_locations.append(modlocations_councilaltdance)
-        if "theirstreets" in self.options.mods:
-            if self.options.scansanity:
-                enabled_mod_locations.append(modscansanity_locations_theirstreets)
-
-        for modlocation_table in enabled_mod_locations:
-            for location in modlocation_table:
-                location_table[location] = modlocation_table[location]
-
-        enabled_mod_items = []
-        if self.options.scansanity:
-            enabled_mod_items.append(scansanity_item_table)
-            item_table["The Embassy: Movefriend Fight Dialogue Begin"] = ItemData(54140050, ItemClassification.progression)
-        if "obski" in self.options.mods:
-            enabled_mod_items.append(moditems_obski)
-            if self.options.scansanity:
-                enabled_mod_items.append(modscansanity_items_obski)
-        if "surfacerunning" in self.options.mods:
-            enabled_mod_items.append(moditems_surfacerunning)
-        if "quiz" in self.options.mods:
-            enabled_mod_items.append(moditems_quiz)
-        if "maze" in self.options.mods:
-            enabled_mod_items.append(moditems_maze)
-        #if "dialoguetelephone" in self.options.mods:
-        #    enabled_mod_items.append(moditems_dialoguetelephone)
-        #    item_table["Menu: Examined Dendritic Cyst"] = ItemData(54140000, ItemClassification.progression)
-        if "kotzu" in self.options.mods:
-            enabled_mod_items.append(moditems_kotzu)
-        if "humoroushumors" in self.options.mods:
-            enabled_mod_items.append(moditems_humoroushumors)
-        if "vielk" in self.options.mods:
-            enabled_mod_items.append(moditems_vielk)
-        if "mothlobotomy" in self.options.mods:
-            enabled_mod_items.append(moditems_mothlobotomy)
-        if "councilaltdance" in self.options.mods:
-            enabled_mod_items.append(moditems_councilaltdance)
-        if "theirstreets" in self.options.mods:
-            if self.options.scansanity:
-                enabled_mod_items.append(modscansanity_items_theirstreets)
-        for moditem_table in enabled_mod_items:
-            for item in moditem_table:
-                item_table[item] = moditem_table[item]
-
     def create_regions(self) -> None:
         menu_region = Region("Menu", self.player, self.multiworld)
         self.multiworld.regions.append(menu_region)
@@ -254,7 +186,7 @@ class CorruObserverWorld(World):
         scar_region.add_exits({"City Streets": "!!__REFERENTIAL SCAR__!! (to City Streets)"}, {"City Streets": lambda state: state.has("Referential Scar (City Streets)", self.player)})
         streets_region.add_exits({"The Void": "!!__Þª†#¦¦§†A·r»__!!"}, {"The Void": lambda state: logic.canAccessCityStreetOffice(state, self.player)})
         streets_region.add_exits({"Beneath": "!!__Þª†#¦¦ìnÑ–R__!!"}, {"Beneath": lambda state: logic.canAccessCityStreetOffice(state, self.player)})
-        streets_region.add_exits({"Labs": "!!__ELEVATOR BUTTONS__!! (Lab)"}, {"Labs": lambda state: logic.canAccessCityStreetOffice(state, self.player) and state.has("City Street: Director Meeting", self.player)})
+        streets_region.add_exits({"Labs": "!!__ELEVATOR BUTTONS__!! (Lab)"}, {"Labs": lambda state: logic.canAccessCityStreetOffice(state, self.player) and state.has("City Streets: Director Meeting", self.player)})
         self.multiworld.register_indirect_condition(self.multiworld.get_region("Referential Scar", self.player), self.multiworld.get_entrance("!!__Þª†#¦¦§†A·r»__!!", self.player))
         self.multiworld.register_indirect_condition(self.multiworld.get_region("Referential Scar", self.player), self.multiworld.get_entrance("!!__Þª†#¦¦ìnÑ–R__!!", self.player))
         self.multiworld.register_indirect_condition(self.multiworld.get_region("Referential Scar", self.player), self.multiworld.get_entrance("!!__ELEVATOR BUTTONS__!! (Lab)", self.player))
@@ -369,10 +301,41 @@ class CorruObserverWorld(World):
             parasite_region.connect(obski_region)
             obski_region.connect(parasite_region)
 
-        for location in location_table:
-            location_data = location_table[location]
-            locationobj = CorruObserverLocation(self.player, location, location_data.id, location_name_to_var[location_data.region])
-            location_name_to_var[location_data.region].locations.append(locationobj)
+        enabled_locations = []
+        enabled_locations.append(location_table)
+        if self.options.scansanity:
+            enabled_locations.append(scansanity_location_table)
+        if "obski" in self.options.mods:
+            enabled_locations.append(modlocations_obski)
+            if self.options.scansanity:
+                enabled_locations.append(modscansanity_locations_obski)
+        if "surfacerunning" in self.options.mods:
+            enabled_locations.append(modlocations_surfacerunning)
+        if "quiz" in self.options.mods:
+            enabled_locations.append(modlocations_quiz)
+        if "maze" in self.options.mods:
+            enabled_locations.append(modlocations_maze)
+        #if "dialoguetelephone" in self.options.mods:
+        #    enabled_locations.append(modlocations_dialoguetelephone)
+        if "kotzu" in self.options.mods:
+            enabled_locations.append(modlocations_kotzu)
+        if "humoroushumors" in self.options.mods:
+            enabled_locations.append(modlocations_humoroushumors)
+        if "vielk" in self.options.mods:
+            enabled_locations.append(modlocations_vielk)
+        if "mothlobotomy" in self.options.mods:
+            enabled_locations.append(modlocations_mothlobotomy)
+        if "councilaltdance" in self.options.mods:
+            enabled_locations.append(modlocations_councilaltdance)
+        if "theirstreets" in self.options.mods:
+            if self.options.scansanity:
+                enabled_locations.append(modscansanity_locations_theirstreets)
+
+        for enabledlocation_table in enabled_locations:
+            for location in enabledlocation_table:
+                location_data = enabledlocation_table[location]
+                locationobj = CorruObserverLocation(self.player, location, location_data.id, location_name_to_var[location_data.region])
+                location_name_to_var[location_data.region].locations.append(locationobj)
 
         intro_loc = CorruObserverLocation(self.player, "Menu: Completed Intro", None, menu_region)
         menu_region.locations.append(intro_loc)
@@ -407,16 +370,53 @@ class CorruObserverWorld(World):
         
 
     def create_items(self) -> None:
-        for item in item_table:
-            item_data = item_table[item]
-            for i in range(item_data.count):
-                itemobj = self.create_item(item)
-                self.multiworld.itempool.append(itemobj)
+        enabled_items = []
+        enabled_items.append(item_table)
+        if self.options.scansanity:
+            enabled_items.append(scansanity_item_table)
+        if "obski" in self.options.mods:
+            enabled_items.append(moditems_obski)
+            if self.options.scansanity:
+                enabled_items.append(modscansanity_items_obski)
+        if "surfacerunning" in self.options.mods:
+            enabled_items.append(moditems_surfacerunning)
+        if "quiz" in self.options.mods:
+            enabled_items.append(moditems_quiz)
+        if "maze" in self.options.mods:
+            enabled_items.append(moditems_maze)
+        #if "dialoguetelephone" in self.options.mods:
+        #    enabled_items.append(moditems_dialoguetelephone)
+        #    item_table["Menu: Examined Dendritic Cyst"] = ItemData(54140000, ItemClassification.progression)
+        if "kotzu" in self.options.mods:
+            enabled_items.append(moditems_kotzu)
+        if "humoroushumors" in self.options.mods:
+            enabled_items.append(moditems_humoroushumors)
+        if "vielk" in self.options.mods:
+            enabled_items.append(moditems_vielk)
+        if "mothlobotomy" in self.options.mods:
+            enabled_items.append(moditems_mothlobotomy)
+        if "councilaltdance" in self.options.mods:
+            enabled_items.append(moditems_councilaltdance)
+        if "theirstreets" in self.options.mods:
+            if self.options.scansanity:
+                enabled_items.append(modscansanity_items_theirstreets)
+        for table in enabled_items:
+            for item in table:
+                item_data = masteritem_table[item]
+                for i in range(item_data.count):
+                    itemobj = self.create_item(item)
+                    self.multiworld.itempool.append(itemobj)
+                
         self.multiworld.local_early_items[self.player]["Menu: Depth Scanned Cyst"] = 1
 
     def create_item(self, name: str) -> "Item":
-        item_data = item_table[name]
-        item = CorruObserverItem(name, item_data.classification, item_data.code, self.player)
+
+        item_data = masteritem_table[name]
+        item_class = item_data.classification
+        if name == "The Embassy: Movefriend Fight Dialogue Begin":
+            if self.options.scansanity:
+                item_class = ItemClassification.progression
+        item = CorruObserverItem(name, item_class, item_data.code, self.player)
         return item
     
     def create_event(self, name: str) -> "Item":
@@ -430,6 +430,7 @@ class CorruObserverWorld(World):
         # The options dataclass has a method to return a `Dict[str, Any]` of each option name provided and the relevant
         # option's value.
         return self.options.as_dict("scansanity", "mods")
+
 
 
 

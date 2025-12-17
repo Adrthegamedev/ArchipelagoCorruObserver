@@ -11,7 +11,6 @@ class ItemData(typing.NamedTuple):
 class CorruObserverItem(Item):
     game: str = "CorruObserver"
 
-
 item_table = {
     # EP0
     "Menu: Examined Dendritic Cyst": ItemData(54140000, ItemClassification.filler),
@@ -150,8 +149,8 @@ item_table = {
     "Referential Scar (City Streets)": ItemData(54140125, ItemClassification.progression),
     "Referential Scar (Clemens Romanus)": ItemData(54140126, ItemClassification.progression),
     "Referential Scar (Labs)": ItemData(54140127, ItemClassification.progression),
-    "City Street: Director Meeting": ItemData(54140128, ItemClassification.progression),
-    "City Street: Cass Portal": ItemData(54140129, ItemClassification.filler),
+    "City Streets: Director Meeting": ItemData(54140128, ItemClassification.progression),
+    "City Streets: Cass Portal": ItemData(54140129, ItemClassification.filler),
     "Beneath: Drowning Falloff Relief": ItemData(54140130, ItemClassification.filler),
     "Visited: /local/beneath/car/": ItemData(54140131, ItemClassification.filler),
     "Car: Intro": ItemData(54140132, ItemClassification.progression),
